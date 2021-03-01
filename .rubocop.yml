@@ -1,0 +1,30 @@
+---
+require:
+  - rubocop-performance
+
+AllCops:
+  NewCops: enable
+  SuggestExtensions: false
+  TargetRubyVersion: 2.6
+
+Metrics/BlockLength:
+  Exclude:
+    - '*.gemspec'
+    - 'spec/**/*_spec.rb'
+
+Layout/LineLength:
+  Max: 80
+  IgnoredPatterns:
+    - '^\s*it\s+.*do$'
+    - '^\s*context\s+.*do$'
+    - '^\s*describe\s+.*do$'
+
+Layout/DotPosition:
+  EnforcedStyle: trailing
+
+Style/ClassAndModuleChildren:
+  EnforcedStyle: nested
+
+Style/MixinUsage:
+  Exclude:
+    - 'spec/spec_helper.rb'
