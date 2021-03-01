@@ -1,4 +1,6 @@
-require "icasework/version"
+# frozen_string_literal: true
+
+require 'icasework/version'
 
 module Icasework
   class Error < StandardError; end
