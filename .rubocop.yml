@@ -3,6 +3,11 @@ require:
   - rubocop-performance
 
 AllCops:
+  Exclude:
+    - 'bin/bundle'
+    - 'bin/rake'
+    - 'bin/rspec'
+    - 'bin/rubocop'
   NewCops: enable
   SuggestExtensions: false
   TargetRubyVersion: 2.6
