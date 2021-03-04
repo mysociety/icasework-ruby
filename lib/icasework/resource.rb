@@ -29,6 +29,7 @@ module Icasework
 
     extend Forwardable
     def_delegator :@resource, :url
+    def_delegator :@resource, :post
 
     def initialize(uri:)
       @resource = RestClient::Resource.new(uri)
