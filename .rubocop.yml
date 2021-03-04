@@ -17,6 +17,10 @@ Metrics/BlockLength:
     - '*.gemspec'
     - 'spec/**/*_spec.rb'
 
+Naming/AccessorMethodName:
+  Exclude:
+    - 'lib/icasework/resource.rb'
+
 Layout/LineLength:
   Max: 80
   IgnoredPatterns:

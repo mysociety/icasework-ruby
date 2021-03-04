@@ -9,13 +9,23 @@ module Icasework
   class Resource
     class << self
       def token
-        resource('token')
+        resource('token', authorised: false)
+      end
+
+      def get_cases
+        resource('getcases', subdomain: 'uatportal')
       end
 
       private
 
-      def resource(path, subdomain: 'uat')
-        new(uri: uri(path: path, subdomain: subdomain))
+      def resource(path, authorised: true, subdomain: 'uat', **options)
+        if authorised
+          options[:headers] = {
+            authorization: "Bearer #{Icasework::Token::Bearer.generate}"
+          }
+        end
+
+        new(uri: uri(path: path, subdomain: subdomain), options: options)
       end
 
       def uri(path:, subdomain:)
@@ -28,11 +38,11 @@ module Icasework
     end
 
     extend Forwardable
-    def_delegator :@resource, :url
-    def_delegator :@resource, :post
+    def_delegators :@resource, :url, :headers
+    def_delegators :@resource, :get, :post
 
-    def initialize(uri:)
-      @resource = RestClient::Resource.new(uri)
+    def initialize(uri:, options:)
+      @resource = RestClient::Resource.new(uri, options)
     end
   end
 end
