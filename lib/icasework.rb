@@ -6,6 +6,9 @@ require 'icasework/version'
 # This module is the main entry point of the Gem
 #
 module Icasework
+  require 'icasework/resource'
+  require 'icasework/token/jwt'
+
   ConfigurationError = Class.new(StandardError)
 
   class << self
