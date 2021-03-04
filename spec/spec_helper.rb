@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 require 'bundler/setup'
+require 'timecop'
+require 'webmock/rspec'
 require 'icasework'
 
 include Icasework

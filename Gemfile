@@ -11,3 +11,5 @@ gem 'rspec', '~> 3.0'
 gem 'rubocop', '~> 1.11.0', require: false
 gem 'rubocop-performance', require: false
 gem 'rubocop-rspec', require: false
+gem 'timecop'
+gem 'webmock'
