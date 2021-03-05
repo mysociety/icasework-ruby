@@ -44,6 +44,34 @@ RSpec.describe Icasework::Resource do
       described_class.new(uri: uri, options: options).get(payload).data
     end
 
+    context 'with include format equals false option' do
+      it 'does not add JSON format param' do
+        expect(WebMock).to have_requested(:get, uri).with(
+          query: {}
+        ).once
+      end
+    end
+
+    context 'without include format option' do
+      let(:options) { {} }
+
+      it 'add JSON format param' do
+        expect(WebMock).to have_requested(:get, uri).with(
+          query: { Format: 'json' }
+        ).once
+      end
+    end
+
+    context 'with include format option' do
+      let(:options) { { include_format: true } }
+
+      it 'add JSON format param' do
+        expect(WebMock).to have_requested(:get, uri).with(
+          query: { Format: 'json' }
+        ).once
+      end
+    end
+
     context 'with payload' do
       let(:payload) { { foo: 'bar' } }
 
@@ -63,6 +91,37 @@ RSpec.describe Icasework::Resource do
     before do
       stub_request(:post, %r{http://example\.com/.*}).and_return(body: '{}')
       described_class.new(uri: uri, options: options).post(payload).data
+    end
+
+    context 'with include format equals false option' do
+      it 'does not add JSON format param' do
+        expect(WebMock).to have_requested(:post, uri).with(
+          headers: { 'Content-Type' => 'application/x-www-form-urlencoded' },
+          body: {}
+        ).once
+      end
+    end
+
+    context 'without include format option' do
+      let(:options) { {} }
+
+      it 'add JSON format param' do
+        expect(WebMock).to have_requested(:post, uri).with(
+          headers: { 'Content-Type' => 'application/x-www-form-urlencoded' },
+          body: { Format: 'json' }
+        ).once
+      end
+    end
+
+    context 'with include format option' do
+      let(:options) { { include_format: true } }
+
+      it 'add JSON format param' do
+        expect(WebMock).to have_requested(:post, uri).with(
+          headers: { 'Content-Type' => 'application/x-www-form-urlencoded' },
+          body: { Format: 'json' }
+        ).once
+      end
     end
 
     context 'with payload' do

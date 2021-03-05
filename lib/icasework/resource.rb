@@ -9,7 +9,8 @@ module Icasework
   class Resource
     class << self
       def token(payload = {})
-        resource('token', authorised: false).post(payload)
+        resource('token', authorised: false, include_format: false).
+          post(payload)
       end
 
       def get_cases(payload = {})
@@ -43,6 +44,7 @@ module Icasework
     attr_reader :method
 
     def initialize(uri:, options:)
+      @include_format = options.delete(:include_format) { true }
       @resource = RestClient::Resource.new(uri, options)
     end
 
@@ -52,13 +54,13 @@ module Icasework
 
     def get(payload)
       @method = :get
-      @payload = { params: payload }
+      @payload = { params: prepare_payload(payload) }
       self
     end
 
     def post(payload)
       @method = :post
-      @payload = payload
+      @payload = prepare_payload(payload)
       self
     end
 
@@ -68,6 +70,13 @@ module Icasework
       @resource.public_send(@method, @payload, &parser)
     rescue RestClient::Exception => e
       raise RequestError, e.message
+    end
+
+    def prepare_payload(payload)
+      return unless payload
+
+      payload[:Format] = 'json' if @include_format
+      payload
     end
 
     def parser
