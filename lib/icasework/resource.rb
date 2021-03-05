@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'rest_client'
+require 'active_support/core_ext/string/inflections'
 
 module Icasework
   ##
@@ -75,8 +76,20 @@ module Icasework
     def prepare_payload(payload)
       return unless payload
 
-      payload[:Format] = 'json' if @include_format
+      # TODO: handle array values, map keys suffixed with integers
+      payload[:format] = 'json' if @include_format
+      payload.transform_keys! do |k|
+        next k if valid_keys.include?(k.to_s)
+
+        ActiveSupport::Inflector.classify(k)
+      end
+
       payload
+    end
+
+    # these params keys should remain as they are, no need to classify-case them
+    def valid_keys
+      %w[db fromseq toseq grant_type assertion access_token]
     end
 
     def parser
