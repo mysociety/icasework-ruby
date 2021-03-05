@@ -2,6 +2,7 @@
 
 require 'rest_client'
 require 'active_support/core_ext/string/inflections'
+require 'active_support/core_ext/hash/keys'
 
 module Icasework
   ##
@@ -94,9 +95,24 @@ module Icasework
 
     def parser
       lambda do |response, _request, _result|
-        JSON.parse(response.body)
+        process_data(JSON.parse(response.body))
       rescue JSON::ParserError
         raise ResponseError, "JSON invalid (#{response.body[0...100]})"
+      end
+    end
+
+    def process_data(data)
+      case data
+      when Hash
+        data.deep_transform_keys! do |key|
+          # TODO: handle keys suffixed with integers, map to arrays
+          # TODO: handle keys with periods, map to hashes
+          key.underscore.to_sym
+        end
+      when Array
+        data.map { |d| process_data(d) }
+      else
+        data
       end
     end
   end
