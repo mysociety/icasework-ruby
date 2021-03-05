@@ -66,15 +66,15 @@ RSpec.describe Icasework::Token::Bearer do
   end
 
   shared_context 'with instance' do
-    let(:mock_response) do
-      double(:response, body: {
-        access_token: 'token',
-        token_type: 'bearer',
-        expires_in: 3600
-      }.to_json)
+    let(:mock_data) do
+      {
+        'access_token' => 'token',
+        'token_type' => 'bearer',
+        'expires_in' => 3600
+      }
     end
 
-    let(:instance) { Icasework::Token::Bearer.new(mock_response) }
+    let(:instance) { Icasework::Token::Bearer.new(mock_data) }
   end
 
   describe '#to_s' do

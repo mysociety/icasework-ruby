@@ -8,12 +8,12 @@ module Icasework
   #
   class Resource
     class << self
-      def token
-        resource('token', authorised: false)
+      def token(payload = {})
+        resource('token', authorised: false).post(payload)
       end
 
-      def get_cases
-        resource('getcases', subdomain: 'uatportal')
+      def get_cases(payload = {})
+        resource('getcases', subdomain: 'uatportal').get(payload)
       end
 
       private
@@ -39,10 +39,43 @@ module Icasework
 
     extend Forwardable
     def_delegators :@resource, :url, :headers
-    def_delegators :@resource, :get, :post
+
+    attr_reader :method
 
     def initialize(uri:, options:)
       @resource = RestClient::Resource.new(uri, options)
+    end
+
+    def data
+      response
+    end
+
+    def get(payload)
+      @method = :get
+      @payload = { params: payload }
+      self
+    end
+
+    def post(payload)
+      @method = :post
+      @payload = payload
+      self
+    end
+
+    private
+
+    def response
+      @resource.public_send(@method, @payload, &parser)
+    rescue RestClient::Exception => e
+      raise RequestError, e.message
+    end
+
+    def parser
+      lambda do |response, _request, _result|
+        JSON.parse(response.body)
+      rescue JSON::ParserError
+        raise ResponseError, "JSON invalid (#{response.body[0...100]})"
+      end
     end
   end
 end

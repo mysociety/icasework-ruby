@@ -8,9 +8,9 @@ module Icasework
     class Bearer
       class << self
         def generate
-          new Icasework::Resource.token.post(payload)
-        rescue RestClient::Exception
-          raise AuthenticationError
+          new Icasework::Resource.token(payload).data
+        rescue RequestError, ResponseError => e
+          raise AuthenticationError, e.message
         end
 
         private
@@ -23,13 +23,10 @@ module Icasework
         end
       end
 
-      def initialize(response)
-        data = JSON.parse(response.body)
+      def initialize(data)
         @access_token = data.fetch('access_token')
         @token_type = data.fetch('token_type')
         @expires_in = data.fetch('expires_in')
-      rescue JSON::ParserError
-        raise AuthenticationError
       end
 
       def to_s
