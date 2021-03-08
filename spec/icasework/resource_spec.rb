@@ -34,6 +34,46 @@ RSpec.describe Icasework::Resource do
     end
   end
 
+  describe '.get_case_attribute' do
+    subject(:resource) { described_class.get_case_attribute }
+    include_examples 'authorise resource'
+
+    it 'returns GET getcaseattribute endpoint' do
+      expect(resource.method).to eq :get
+      expect(resource.url).to eq 'https://uat.icasework.com/getcaseattribute?db=test'
+    end
+  end
+
+  describe '.get_case_details' do
+    subject(:resource) { described_class.get_case_details }
+    include_examples 'authorise resource'
+
+    it 'returns GET getcasedetails endpoint' do
+      expect(resource.method).to eq :get
+      expect(resource.url).to eq 'https://uat.icasework.com/getcasedetails?db=test'
+    end
+  end
+
+  describe '.get_case_documents' do
+    subject(:resource) { described_class.get_case_documents }
+    include_examples 'authorise resource'
+
+    it 'returns GET getcasedocuments endpoint' do
+      expect(resource.method).to eq :get
+      expect(resource.url).to eq 'https://uat.icasework.com/getcasedocuments?db=test'
+    end
+  end
+
+  describe '.create_case' do
+    subject(:resource) { described_class.create_case }
+    include_examples 'authorise resource'
+
+    it 'returns POST createcase endpoint' do
+      expect(resource.method).to eq :post
+      expect(resource.url).to eq 'https://uat.icasework.com/createcase?db=test'
+    end
+  end
+
   describe '#GET requests' do
     let(:uri) { 'http://example.com' }
     let(:options) { { include_format: false } }

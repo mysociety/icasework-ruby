@@ -19,6 +19,22 @@ module Icasework
         resource('getcases', subdomain: 'uatportal').get(payload)
       end
 
+      def get_case_attribute(payload = {})
+        resource('getcaseattribute').get(payload)
+      end
+
+      def get_case_details(payload = {})
+        resource('getcasedetails').get(payload)
+      end
+
+      def get_case_documents(payload = {})
+        resource('getcasedocuments').get(payload)
+      end
+
+      def create_case(payload = {})
+        resource('createcase').post(payload)
+      end
+
       private
 
       def resource(path, authorised: true, subdomain: 'uat', **options)
