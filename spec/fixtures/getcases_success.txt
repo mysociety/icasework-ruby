@@ -1,0 +1,27 @@
+HTTP/1.1 200 OK
+Content-Type: application/json;charset=UTF-8
+Content-Length: 511
+
+[
+{
+"CaseId": "487347",
+"CaseType": "Information request",
+"CaseLabel": "IR - y",
+"ContactMethod": "Online Form",
+"DateReceived": "2021-02-15",
+"TimeCreated": "2021-02-15T16:42:19",
+"Status": "Some information sent but not all held",
+"Rating": "Standard"
+}
+,
+{
+"CaseId": "487342",
+"CaseType": "Information request",
+"CaseLabel": "IR - h",
+"ContactMethod": "Email",
+"DateReceived": "2021-02-15",
+"TimeCreated": "2021-02-15T16:39:18",
+"Status": "All information sent",
+"Rating": "Standard"
+}
+]
