@@ -6,8 +6,11 @@ RSpec.describe Icasework::Resource do
   describe '.token' do
     subject(:resource) { described_class.token }
 
-    it 'returns POST token endpoint' do
+    it 'returns POST method' do
       expect(resource.method).to eq :post
+    end
+
+    it 'returns token endpoint' do
       expect(resource.url).to eq 'https://uat.icasework.com/token?db=test'
     end
   end
@@ -26,50 +29,70 @@ RSpec.describe Icasework::Resource do
 
   describe '.get_cases' do
     subject(:resource) { described_class.get_cases }
+
     include_examples 'authorise resource'
 
-    it 'returns GET getcases endpoint' do
+    it 'returns GET method' do
       expect(resource.method).to eq :get
+    end
+
+    it 'returns getcases endpoint' do
       expect(resource.url).to eq 'https://uatportal.icasework.com/getcases?db=test'
     end
   end
 
   describe '.get_case_attribute' do
     subject(:resource) { described_class.get_case_attribute }
+
     include_examples 'authorise resource'
 
-    it 'returns GET getcaseattribute endpoint' do
+    it 'returns GET method' do
       expect(resource.method).to eq :get
+    end
+
+    it 'returns getcaseattribute endpoint' do
       expect(resource.url).to eq 'https://uat.icasework.com/getcaseattribute?db=test'
     end
   end
 
   describe '.get_case_details' do
     subject(:resource) { described_class.get_case_details }
+
     include_examples 'authorise resource'
 
-    it 'returns GET getcasedetails endpoint' do
+    it 'returns GET method' do
       expect(resource.method).to eq :get
+    end
+
+    it 'returns getcasedetails endpoint' do
       expect(resource.url).to eq 'https://uat.icasework.com/getcasedetails?db=test'
     end
   end
 
   describe '.get_case_documents' do
     subject(:resource) { described_class.get_case_documents }
+
     include_examples 'authorise resource'
 
-    it 'returns GET getcasedocuments endpoint' do
+    it 'returns GET method' do
       expect(resource.method).to eq :get
+    end
+
+    it 'returns getcasedocuments endpoint' do
       expect(resource.url).to eq 'https://uat.icasework.com/getcasedocuments?db=test'
     end
   end
 
   describe '.create_case' do
     subject(:resource) { described_class.create_case }
+
     include_examples 'authorise resource'
 
-    it 'returns POST createcase endpoint' do
+    it 'returns POST method' do
       expect(resource.method).to eq :post
+    end
+
+    it 'returns createcase endpoint' do
       expect(resource.url).to eq 'https://uat.icasework.com/createcase?db=test'
     end
   end
@@ -81,7 +104,7 @@ RSpec.describe Icasework::Resource do
 
     before do
       stub_request(:get, %r{http://example\.com/.*}).and_return(body: '{}')
-      described_class.new(uri: uri, options: options).get(payload).data
+      described_class.new(uri: uri, options: options).get(payload.dup).data
     end
 
     context 'with include format equals false option' do
@@ -130,10 +153,7 @@ RSpec.describe Icasework::Resource do
 
       it 'does not transforms payload keys' do
         expect(WebMock).to have_requested(:get, uri).with(
-          query: {
-            db: 'db', fromseq: 0, toseq: 10, grant_type: 'grant_type',
-            assertion: 'assertion', access_token: 'access_token'
-          }
+          query: payload
         ).once
       end
     end
@@ -146,7 +166,7 @@ RSpec.describe Icasework::Resource do
 
     before do
       stub_request(:post, %r{http://example\.com/.*}).and_return(body: '{}')
-      described_class.new(uri: uri, options: options).post(payload).data
+      described_class.new(uri: uri, options: options).post(payload.dup).data
     end
 
     context 'with include format equals false option' do
@@ -200,10 +220,7 @@ RSpec.describe Icasework::Resource do
       it 'does not transforms payload keys' do
         expect(WebMock).to have_requested(:post, uri).with(
           headers: { 'Content-Type' => 'application/x-www-form-urlencoded' },
-          body: {
-            db: 'db', fromseq: 0, toseq: 10, grant_type: 'grant_type',
-            assertion: 'assertion', access_token: 'access_token'
-          }
+          body: payload
         ).once
       end
     end

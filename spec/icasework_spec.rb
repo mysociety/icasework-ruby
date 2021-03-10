@@ -9,77 +9,77 @@ RSpec.describe Icasework do
 
   describe 'account' do
     it 'must be assignable' do
-      Icasework.account = 'account'
-      expect(Icasework.account).to eq 'account'
+      described_class.account = 'account'
+      expect(described_class.account).to eq 'account'
     end
 
     it 'must raise an exception when not set' do
-      if Icasework.instance_variable_defined?(:@account)
-        Icasework.send(:remove_instance_variable, :@account)
+      if described_class.instance_variable_defined?(:@account)
+        described_class.send(:remove_instance_variable, :@account)
       end
-      expect { Icasework.account }.to raise_error(ConfigurationError)
+      expect { described_class.account }.to raise_error(ConfigurationError)
     end
 
     it 'must raise an exception when set to nil' do
-      Icasework.account = nil
-      expect { Icasework.account }.to raise_error(ConfigurationError)
+      described_class.account = nil
+      expect { described_class.account }.to raise_error(ConfigurationError)
     end
   end
 
   describe 'api key' do
     it 'must be assignable' do
-      Icasework.api_key = 'new_key'
-      expect(Icasework.api_key).to eq 'new_key'
+      described_class.api_key = 'new_key'
+      expect(described_class.api_key).to eq 'new_key'
     end
 
     it 'must raise an exception when not set' do
-      if Icasework.instance_variable_defined?(:@api_key)
-        Icasework.send(:remove_instance_variable, :@api_key)
+      if described_class.instance_variable_defined?(:@api_key)
+        described_class.send(:remove_instance_variable, :@api_key)
       end
-      expect { Icasework.api_key }.to raise_error(ConfigurationError)
+      expect { described_class.api_key }.to raise_error(ConfigurationError)
     end
 
     it 'must raise an exception when set to nil' do
-      Icasework.api_key = nil
-      expect { Icasework.api_key }.to raise_error(ConfigurationError)
+      described_class.api_key = nil
+      expect { described_class.api_key }.to raise_error(ConfigurationError)
     end
   end
 
   describe 'secret_key' do
     it 'must be assignable' do
-      Icasework.secret_key = 'secret_key'
-      expect(Icasework.secret_key).to eq 'secret_key'
+      described_class.secret_key = 'secret_key'
+      expect(described_class.secret_key).to eq 'secret_key'
     end
 
     it 'must raise an exception when not set' do
-      if Icasework.instance_variable_defined?(:@secret_key)
-        Icasework.send(:remove_instance_variable, :@secret_key)
+      if described_class.instance_variable_defined?(:@secret_key)
+        described_class.send(:remove_instance_variable, :@secret_key)
       end
-      expect { Icasework.secret_key }.to raise_error(ConfigurationError)
+      expect { described_class.secret_key }.to raise_error(ConfigurationError)
     end
 
     it 'must raise an exception when set to nil' do
-      Icasework.secret_key = nil
-      expect { Icasework.secret_key }.to raise_error(ConfigurationError)
+      described_class.secret_key = nil
+      expect { described_class.secret_key }.to raise_error(ConfigurationError)
     end
   end
 
   describe 'production?' do
     it 'must be assignable via .mode=' do
-      Icasework.mode = :production
-      expect(Icasework.production?).to be true
+      described_class.mode = :production
+      expect(described_class.production?).to be true
     end
 
     it 'return true when not set' do
-      if Icasework.instance_variable_defined?(:@production)
-        Icasework.send(:remove_instance_variable, :@production)
+      if described_class.instance_variable_defined?(:@production)
+        described_class.send(:remove_instance_variable, :@production)
       end
-      expect(Icasework.production?).to be false
+      expect(described_class.production?).to be false
     end
 
     it 'returns true when set to nil' do
-      Icasework.mode = nil
-      expect(Icasework.production?).to be false
+      described_class.mode = nil
+      expect(described_class.production?).to be false
     end
   end
 end

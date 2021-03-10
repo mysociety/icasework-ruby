@@ -18,7 +18,7 @@ RSpec.configure do |config|
     c.syntax = :expect
   end
 
-  config.before(:each) do
+  config.before do
     Icasework.account = 'test'
     Icasework.api_key = 'foo'
     Icasework.secret_key = 'bar'

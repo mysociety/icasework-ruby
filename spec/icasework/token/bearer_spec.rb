@@ -7,25 +7,23 @@ RSpec.describe Icasework::Token::Bearer do
     subject(:bearer) { described_class.generate }
 
     let(:uri) { 'https://uat.icasework.com/token?db=test' }
-    let(:jwt) { Icasework::Token::JWT.new('mock_jwt') }
-
-    before do
-      allow(Icasework::Token::JWT).to receive(:generate).and_return(jwt)
-      stub_request(:post, uri).to_return(response)
-    end
-
     let(:response) do
       {
         status: 200,
         body: { access_token: nil, token_type: nil, expires_in: nil }.to_json
       }
     end
-
     let(:payload) do
       URI.encode_www_form(
         grant_type: 'urn:ietf:params:oauth:grant-type:jwt-bearer',
         assertion: jwt
       )
+    end
+    let(:jwt) { Icasework::Token::JWT.new('mock_jwt') }
+
+    before do
+      allow(Icasework::Token::JWT).to receive(:generate).and_return(jwt)
+      stub_request(:post, uri).to_return(response)
     end
 
     it 'calls the token endpoint with payload' do
@@ -41,7 +39,7 @@ RSpec.describe Icasework::Token::Bearer do
         File.new('spec/fixtures/token_success.txt')
       end
 
-      it { is_expected.to be_a Icasework::Token::Bearer }
+      it { is_expected.to be_a described_class }
     end
 
     context 'when incorrect credentials' do
@@ -74,7 +72,7 @@ RSpec.describe Icasework::Token::Bearer do
       }
     end
 
-    let(:instance) { Icasework::Token::Bearer.new(mock_data) }
+    let(:instance) { described_class.new(mock_data) }
   end
 
   describe '#to_s' do

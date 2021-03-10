@@ -16,7 +16,7 @@ RSpec.describe Icasework::Token::JWT do
       JWT
     end
 
-    it { is_expected.to be_a Icasework::Token::JWT }
+    it { is_expected.to be_a described_class }
 
     it 'generates expected token' do
       expect(jwt).to eq expected_token
@@ -24,7 +24,7 @@ RSpec.describe Icasework::Token::JWT do
   end
 
   shared_context 'with instance' do
-    let(:instance) { Icasework::Token::JWT.new('jwt') }
+    let(:instance) { described_class.new('jwt') }
   end
 
   describe '#to_s' do
@@ -36,11 +36,20 @@ RSpec.describe Icasework::Token::JWT do
   end
 
   describe '#==' do
+    subject { instance == other_token }
+
     include_context 'with instance'
 
-    it 'compares token' do
-      expect(instance == 'jwt').to be true
-      expect(instance == 'other').to be false
+    context 'when comparing a matching token' do
+      let(:other_token) { 'jwt' }
+
+      it { is_expected.to eq true }
+    end
+
+    context 'when comparing a not matching token' do
+      let(:other_token) { 'other' }
+
+      it { is_expected.to eq false }
     end
   end
 end
