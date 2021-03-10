@@ -35,8 +35,8 @@ module Icasework
       )
     end
 
-    def mode=(mode)
-      @production = (mode == :production)
+    def env=(env)
+      @production = (env == 'production')
     end
 
     def production?

@@ -65,8 +65,8 @@ RSpec.describe Icasework do
   end
 
   describe 'production?' do
-    it 'must be assignable via .mode=' do
-      described_class.mode = :production
+    it 'must be assignable via .env=' do
+      described_class.env = 'production'
       expect(described_class.production?).to be true
     end
 
@@ -78,7 +78,7 @@ RSpec.describe Icasework do
     end
 
     it 'returns true when set to nil' do
-      described_class.mode = nil
+      described_class.env = nil
       expect(described_class.production?).to be false
     end
   end

@@ -22,6 +22,6 @@ RSpec.configure do |config|
     Icasework.account = 'test'
     Icasework.api_key = 'foo'
     Icasework.secret_key = 'bar'
-    Icasework.mode = :test
+    Icasework.env = 'test'
   end
 end
