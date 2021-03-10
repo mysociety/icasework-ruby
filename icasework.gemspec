@@ -6,7 +6,7 @@ Gem::Specification.new do |spec|
   spec.name          = 'icasework'
   spec.version       = Icasework::VERSION
   spec.authors       = ['mySociety']
-  spec.email         = ['hello@mysocity.org']
+  spec.email         = ['hello@mysociety.org']
 
   spec.summary       = 'Ruby library for the iCasework API.'
   spec.description   = 'iCasework is a case management software that enables ' \
