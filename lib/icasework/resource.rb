@@ -98,7 +98,7 @@ module Icasework
       payload.transform_keys! do |k|
         next k if valid_keys.include?(k.to_s)
 
-        ActiveSupport::Inflector.classify(k)
+        k.to_s.classify
       end
 
       payload

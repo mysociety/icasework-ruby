@@ -2,7 +2,7 @@ PATH
   remote: .
   specs:
     icasework (0.1.0)
-      activesupport
+      activesupport (>= 4.0.0)
       jwt (~> 2.2.0)
       rest-client (~> 2.1.0)
 
