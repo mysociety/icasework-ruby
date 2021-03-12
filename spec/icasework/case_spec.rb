@@ -8,7 +8,7 @@ RSpec.describe Icasework::Case do
 
     let(:uri) { 'https://uatportal.icasework.com/getcases' }
     let(:response) { { status: 200, body: [].to_json } }
-    let(:payload) { { type: 'InformationRequest' } }
+    let(:payload) { { 'Type' => 'InformationRequest' } }
     let(:token) do
       Icasework::Token::Bearer.new(
         { access_token: 'mock_token', token_type: 'bearer', expires_in: 3600 }
@@ -23,7 +23,7 @@ RSpec.describe Icasework::Case do
     it 'calls the GET getcases endpoint with payload' do
       cases
       expect(WebMock).to have_requested(:get, "#{uri}?db=test").with(
-        query: { Format: 'json', Type: 'InformationRequest' }
+        query: { 'Format' => 'json', 'Type' => 'InformationRequest' }
       ).once
     end
 
@@ -45,7 +45,7 @@ RSpec.describe Icasework::Case do
       { status: 200, body: { createcaseresponse: { caseid: 123 } }.to_json }
     end
     let(:payload) do
-      { format: 'json', type: 'InformationRequest' }
+      { 'Format' => 'json', 'Type' => 'InformationRequest' }
     end
     let(:token) do
       Icasework::Token::Bearer.new(
