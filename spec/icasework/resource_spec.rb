@@ -130,30 +130,17 @@ RSpec.describe Icasework::Resource do
 
       it 'add JSON format param' do
         expect(WebMock).to have_requested(:get, uri).with(
-          query: { Format: 'json' }
+          query: { 'Format' => 'json' }
         ).once
       end
     end
 
     context 'with payload' do
-      let(:payload) { { foo: 'bar' } }
+      let(:payload) { { 'Foo' => 'bar' } }
 
-      it 'transforms payload keys to classify-case' do
+      it 'submits payload keys' do
         expect(WebMock).to have_requested(:get, uri).with(
-          query: { Foo: 'bar' }
-        ).once
-      end
-    end
-
-    context 'with payload which should not be transformed' do
-      let(:payload) do
-        { db: 'db', fromseq: 0, toseq: 10, grant_type: 'grant_type',
-          assertion: 'assertion', access_token: 'access_token' }
-      end
-
-      it 'does not transforms payload keys' do
-        expect(WebMock).to have_requested(:get, uri).with(
-          query: payload
+          query: { 'Foo' => 'bar' }
         ).once
       end
     end
@@ -184,7 +171,7 @@ RSpec.describe Icasework::Resource do
       it 'add JSON format param' do
         expect(WebMock).to have_requested(:post, uri).with(
           headers: { 'Content-Type' => 'application/x-www-form-urlencoded' },
-          body: { Format: 'json' }
+          body: { 'Format' => 'json' }
         ).once
       end
     end
@@ -195,32 +182,18 @@ RSpec.describe Icasework::Resource do
       it 'add JSON format param' do
         expect(WebMock).to have_requested(:post, uri).with(
           headers: { 'Content-Type' => 'application/x-www-form-urlencoded' },
-          body: { Format: 'json' }
+          body: { 'Format' => 'json' }
         ).once
       end
     end
 
     context 'with payload' do
-      let(:payload) { { foo: 'bar' } }
+      let(:payload) { { 'Foo' => 'bar' } }
 
-      it 'transforms payload keys to classify-case' do
+      it 'submits payload keys' do
         expect(WebMock).to have_requested(:post, uri).with(
           headers: { 'Content-Type' => 'application/x-www-form-urlencoded' },
-          body: { Foo: 'bar' }
-        ).once
-      end
-    end
-
-    context 'with payload which should not be transformed' do
-      let(:payload) do
-        { db: 'db', fromseq: 0, toseq: 10, grant_type: 'grant_type',
-          assertion: 'assertion', access_token: 'access_token' }
-      end
-
-      it 'does not transforms payload keys' do
-        expect(WebMock).to have_requested(:post, uri).with(
-          headers: { 'Content-Type' => 'application/x-www-form-urlencoded' },
-          body: payload
+          body: { 'Foo' => 'bar' }
         ).once
       end
     end

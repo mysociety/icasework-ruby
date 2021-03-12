@@ -92,43 +92,15 @@ module Icasework
 
     def prepare_payload(payload)
       return unless payload
-
-      # TODO: handle array values, map keys suffixed with integers
-      payload[:format] = 'json' if @include_format
-      payload.transform_keys! do |k|
-        next k if valid_keys.include?(k.to_s)
-
-        k.to_s.classify
-      end
-
+      payload['Format'] = 'json' if @include_format
       payload
-    end
-
-    # these params keys should remain as they are, no need to classify-case them
-    def valid_keys
-      %w[db fromseq toseq grant_type assertion access_token]
     end
 
     def parser
       lambda do |response, _request, _result|
-        process_data(JSON.parse(response.body))
+        JSON.parse(response.body)
       rescue JSON::ParserError
         raise ResponseError, "JSON invalid (#{response.body[0...100]})"
-      end
-    end
-
-    def process_data(data)
-      case data
-      when Hash
-        data.deep_transform_keys! do |key|
-          # TODO: handle keys suffixed with integers, map to arrays
-          # TODO: handle keys with periods, map to hashes
-          key.underscore.to_sym
-        end
-      when Array
-        data.map { |d| process_data(d) }
-      else
-        data
       end
     end
   end

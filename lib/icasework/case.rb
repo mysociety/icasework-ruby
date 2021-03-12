@@ -12,8 +12,10 @@ module Icasework
         Icasework::Resource.get_cases(params).data.map do |data|
           new(
             case_details: {
-              case_id: data[:case_id], case_type: data[:case_type],
-              case_label: data[:case_label], rating: data[:rating]
+              case_id: data['CaseId'],
+              case_type: data['CaseType'],
+              case_label: data['CaseLabel'],
+              rating: data['Rating']
             }
           )
         end
@@ -21,7 +23,7 @@ module Icasework
 
       def create(params)
         data = Icasework::Resource.create_case(params).data
-        new(case_details: { case_id: data[:createcaseresponse][:caseid] })
+        new(case_details: { case_id: data['createcaseresponse']['caseid'] })
       end
     end
 
