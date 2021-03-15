@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 require 'rest_client'
-require 'active_support/core_ext/string/inflections'
-require 'active_support/core_ext/hash/keys'
 
 module Icasework
   ##
