@@ -71,4 +71,43 @@ RSpec.describe Icasework::Case do
 
     it { is_expected.to eq 123 }
   end
+
+  describe '#[]' do
+    subject(:case_details) { instance[:case_details] }
+
+    let(:instance) { described_class.new(case_details: { case_id: 123 }) }
+
+    it { is_expected.to be_a(LazyHash) }
+
+    context 'when requesting loaded key' do
+      subject(:case_id) { case_details[:case_id] }
+
+      it { is_expected.to eq 123 }
+
+      it 'does not make an additional remote request' do
+        case_id
+        expect(WebMock).not_to have_requested(
+          :get, 'https://uat.icasework.com/getcasedetails'
+        )
+      end
+    end
+
+    context 'when requesting unloaded key' do
+      subject(:case_label) { case_details[:case_label] }
+
+      before do
+        stub_request(:get, %r{https://uat\.icasework\.com/getcasedetails.*}).
+          to_return(File.new('spec/fixtures/getcasedetails_success.txt'))
+      end
+
+      it { is_expected.to eq 'IR - y' }
+
+      it 'makes an additional remote request' do
+        case_label
+        expect(WebMock).to have_requested(
+          :get, 'https://uat.icasework.com/getcasedetails'
+        ).with(query: { Format: 'xml', CaseId: 123, db: 'test' }).once
+      end
+    end
+  end
 end
