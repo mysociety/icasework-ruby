@@ -97,101 +97,122 @@ RSpec.describe Icasework::Resource do
     end
   end
 
-  describe '#GET requests' do
-    let(:uri) { 'http://example.com' }
-    let(:options) { { include_format: false } }
-    let(:payload) { {} }
+  describe '#url' do
+    subject { instance.url }
+
+    let(:path) { 'path' }
+    let(:options) { {} }
+    let(:instance) { described_class.new(:foo, path, {}, **options) }
+
+    context 'with subdomain option' do
+      let(:options) { { subdomain: 'custom' } }
+
+      it { is_expected.to eq 'https://custom.icasework.com/path?db=test' }
+    end
+
+    context 'without subdomain option' do
+      it { is_expected.to eq 'https://uat.icasework.com/path?db=test' }
+    end
+
+    context 'when production ENV, with subdomain option' do
+      before do
+        allow(Icasework).to receive(:production?).and_return(true)
+      end
+
+      let(:options) { { subdomain: 'custom' } }
+
+      it { is_expected.to eq 'https://test.icasework.com/path' }
+    end
+  end
+
+  describe '#headers' do
+    subject { instance.headers }
+
+    let(:options) { {} }
+    let(:instance) { described_class.new(:foo, '', {}, **options) }
+
+    context 'when request should be authorised' do
+      before do
+        allow(Icasework::Token::Bearer).to receive(:generate).and_return('ABC')
+      end
+
+      it { is_expected.to eq(authorization: 'Bearer ABC') }
+    end
+
+    context 'when request should not be authorised' do
+      let(:options) { { authorised: false } }
+
+      it { is_expected.to eq({}) }
+    end
+  end
+
+  describe '#payload' do
+    subject { instance.payload }
+
+    let(:method) { nil }
+    let(:options) { {} }
+    let(:instance) do
+      described_class.new(method, '', { Foo: 'bar' }, **options)
+    end
+
+    context 'when POST request, with format option' do
+      let(:method) { :post }
+
+      it { is_expected.to eq(Format: 'json', Foo: 'bar') }
+    end
+
+    context 'when POST request, without format option' do
+      let(:method) { :post }
+      let(:options) { { format: nil } }
+
+      it { is_expected.to eq(Foo: 'bar') }
+    end
+
+    context 'when GET request, with format option' do
+      let(:method) { :get }
+
+      it { is_expected.to eq(params: { Format: 'json', Foo: 'bar' }) }
+    end
+
+    context 'when GET request, without format option' do
+      let(:method) { :get }
+      let(:options) { { format: nil } }
+
+      it { is_expected.to eq(params: { Foo: 'bar' }) }
+    end
+  end
+
+  describe '#data' do
+    let(:method) { nil }
+    let(:instance) do
+      described_class.new(method, '', { Foo: 'bar' })
+    end
 
     before do
-      stub_request(:get, %r{http://example\.com/.*}).and_return(body: '{}')
-      described_class.new(uri: uri, options: options).get(payload.dup).data
+      allow(instance).to receive(:url).and_return('http://example.com')
+      allow(instance).to receive(:headers).and_return({})
+      allow(instance).to receive(:format).and_return(nil)
+
+      stub_request(method, %r{http://example\.com/.*}).and_return(body: '{}')
+
+      instance.data
     end
 
-    context 'with include format equals false option' do
-      it 'does not add JSON format param' do
-        expect(WebMock).to have_requested(:get, uri).with(
-          query: {}
-        ).once
-      end
-    end
+    context 'when GET request' do
+      let(:method) { :get }
 
-    context 'without include format option' do
-      let(:options) { {} }
-
-      it 'add JSON format param' do
-        expect(WebMock).to have_requested(:get, uri).with(
-          query: { Format: 'json' }
-        ).once
-      end
-    end
-
-    context 'with include format option' do
-      let(:options) { { include_format: true } }
-
-      it 'add JSON format param' do
-        expect(WebMock).to have_requested(:get, uri).with(
-          query: { 'Format' => 'json' }
-        ).once
-      end
-    end
-
-    context 'with payload' do
-      let(:payload) { { 'Foo' => 'bar' } }
-
-      it 'submits payload keys' do
-        expect(WebMock).to have_requested(:get, uri).with(
+      it 'performs remote request with URL query params' do
+        expect(WebMock).to have_requested(:get, 'http://example.com').with(
           query: { 'Foo' => 'bar' }
         ).once
       end
     end
-  end
 
-  describe '#POST requests' do
-    let(:uri) { 'http://example.com' }
-    let(:options) { { include_format: false } }
-    let(:payload) { {} }
+    context 'when POST request' do
+      let(:method) { :post }
 
-    before do
-      stub_request(:post, %r{http://example\.com/.*}).and_return(body: '{}')
-      described_class.new(uri: uri, options: options).post(payload.dup).data
-    end
-
-    context 'with include format equals false option' do
-      it 'does not add JSON format param' do
-        expect(WebMock).to have_requested(:post, uri).with(
-          headers: { 'Content-Type' => 'application/x-www-form-urlencoded' },
-          body: {}
-        ).once
-      end
-    end
-
-    context 'without include format option' do
-      let(:options) { {} }
-
-      it 'add JSON format param' do
-        expect(WebMock).to have_requested(:post, uri).with(
-          headers: { 'Content-Type' => 'application/x-www-form-urlencoded' },
-          body: { 'Format' => 'json' }
-        ).once
-      end
-    end
-
-    context 'with include format option' do
-      let(:options) { { include_format: true } }
-
-      it 'add JSON format param' do
-        expect(WebMock).to have_requested(:post, uri).with(
-          headers: { 'Content-Type' => 'application/x-www-form-urlencoded' },
-          body: { 'Format' => 'json' }
-        ).once
-      end
-    end
-
-    context 'with payload' do
-      let(:payload) { { 'Foo' => 'bar' } }
-
-      it 'submits payload keys' do
-        expect(WebMock).to have_requested(:post, uri).with(
+      it 'performs remote request with form data' do
+        expect(WebMock).to have_requested(:post, 'http://example.com').with(
           headers: { 'Content-Type' => 'application/x-www-form-urlencoded' },
           body: { 'Foo' => 'bar' }
         ).once
