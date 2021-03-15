@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'active_support/core_ext/hash/keys'
-
 module Icasework
   module Token
     ##
@@ -26,10 +24,9 @@ module Icasework
       end
 
       def initialize(data)
-        data = data.dup.symbolize_keys!
-        @access_token = data.fetch(:access_token)
-        @token_type = data.fetch(:token_type)
-        @expires_in = data.fetch(:expires_in)
+        @access_token = data.fetch('access_token')
+        @token_type = data.fetch('token_type')
+        @expires_in = data.fetch('expires_in')
       end
 
       def to_s

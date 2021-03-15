@@ -11,7 +11,8 @@ RSpec.describe Icasework::Case do
     let(:payload) { { 'Type' => 'InformationRequest' } }
     let(:token) do
       Icasework::Token::Bearer.new(
-        { access_token: 'mock_token', token_type: 'bearer', expires_in: 3600 }
+        { 'access_token' => 'mock_token', 'token_type' => 'bearer',
+          'expires_in' => 3600 }
       )
     end
 
@@ -49,7 +50,8 @@ RSpec.describe Icasework::Case do
     end
     let(:token) do
       Icasework::Token::Bearer.new(
-        { access_token: 'mock_token', token_type: 'bearer', expires_in: 3600 }
+        { 'access_token' => 'mock_token', 'token_type' => 'bearer',
+          'expires_in' => 3600 }
       )
     end
 
