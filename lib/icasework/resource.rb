@@ -92,6 +92,7 @@ module Icasework
 
     def prepare_payload(payload)
       return unless payload
+
       payload['Format'] = 'json' if @include_format
       payload
     end
