@@ -33,6 +33,9 @@ module Icasework
       end
     end
 
+    require 'icasework/resource/curl'
+    include Curl
+
     attr_reader :method
 
     def initialize(method, path, payload, **options)
