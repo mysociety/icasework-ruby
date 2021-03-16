@@ -63,8 +63,9 @@ module Icasework
     def payload
       return @payload if @payload_parsed
 
-      @payload[:Format] = format if format
+      @payload[:format] = format if format
 
+      @payload = Payload.process(@payload)
       @payload = { params: @payload } if method == :get
 
       @payload_parsed = true
@@ -97,7 +98,7 @@ module Icasework
 
     def parser
       lambda do |response, _request, _result|
-        parse_format(response)
+        Data.process(parse_format(response))
       rescue JSON::ParserError
         raise ResponseError, "JSON invalid (#{response.body[0...100]})"
       rescue REXML::ParseException
