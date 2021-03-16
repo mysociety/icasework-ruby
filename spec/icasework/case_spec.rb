@@ -7,7 +7,6 @@ RSpec.describe Icasework::Case do
     subject(:cases) { described_class.where(payload) }
 
     let(:uri) { 'https://uatportal.icasework.com/getcases' }
-    let(:response) { { status: 200, body: [].to_json } }
     let(:payload) { { 'Type' => 'InformationRequest' } }
     let(:token) do
       Icasework::Token::Bearer.new(
@@ -18,7 +17,9 @@ RSpec.describe Icasework::Case do
 
     before do
       allow(Icasework::Token::Bearer).to receive(:generate).and_return(token)
-      stub_request(:get, /#{uri}.*/).to_return(response)
+      stub_request(:get, /#{uri}.*/).to_return(
+        File.new('spec/fixtures/getcases_success.txt')
+      )
     end
 
     it 'calls the GET getcases endpoint with payload' do
@@ -29,10 +30,6 @@ RSpec.describe Icasework::Case do
     end
 
     context 'when successful' do
-      let(:response) do
-        File.new('spec/fixtures/getcases_success.txt')
-      end
-
       it { is_expected.to be_an Array }
       it { is_expected.to all(be_an(described_class)) }
     end
@@ -42,9 +39,6 @@ RSpec.describe Icasework::Case do
     subject(:create_case) { described_class.create(payload) }
 
     let(:uri) { 'https://uat.icasework.com/createcase' }
-    let(:response) do
-      { status: 200, body: { createcaseresponse: { caseid: 123 } }.to_json }
-    end
     let(:payload) { { 'Type' => 'InformationRequest' } }
     let(:token) do
       Icasework::Token::Bearer.new(
@@ -55,7 +49,9 @@ RSpec.describe Icasework::Case do
 
     before do
       allow(Icasework::Token::Bearer).to receive(:generate).and_return(token)
-      stub_request(:post, /#{uri}.*/).to_return(response)
+      stub_request(:post, /#{uri}.*/).to_return(
+        File.new('spec/fixtures/createcase_success.txt')
+      )
     end
 
     it 'calls the POST createcase endpoint with payload' do
@@ -67,10 +63,6 @@ RSpec.describe Icasework::Case do
     end
 
     context 'when successful' do
-      let(:response) do
-        File.new('spec/fixtures/createcase_success.txt')
-      end
-
       it { is_expected.to be_an described_class }
     end
   end
