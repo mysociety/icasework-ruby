@@ -1,7 +1,5 @@
 HTTP/1.1 200 OK
-Content-Type: application/json;charset=UTF-8
-Content-Length: 48
+Content-Type: text/xml;charset=UTF-8
+Content-Length: 122
 
-{"createcaseresponse": {
-  "caseid": "489834"
-}}
+<?xml version="1.0" encoding="UTF-8"?><createcaseresponse><caseid>492233</caseid><team>INBOXIR</team></createcaseresponse>

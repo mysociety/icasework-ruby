@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'rest_client'
+require 'active_support/core_ext/hash/conversions'
 
 module Icasework
   ##
@@ -81,7 +82,7 @@ module Icasework
     end
 
     def format
-      @options.fetch(:format, 'json')
+      @options.fetch(:format, 'xml')
     end
 
     def resource
@@ -96,9 +97,20 @@ module Icasework
 
     def parser
       lambda do |response, _request, _result|
-        JSON.parse(response.body)
+        parse_format(response)
       rescue JSON::ParserError
         raise ResponseError, "JSON invalid (#{response.body[0...100]})"
+      rescue REXML::ParseException
+        raise ResponseError, "XML invalid (#{response.body[0...100]})"
+      end
+    end
+
+    def parse_format(response)
+      case format
+      when 'xml'
+        Hash.from_xml(response.body)
+      else
+        JSON.parse(response.body)
       end
     end
   end

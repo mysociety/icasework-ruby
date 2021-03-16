@@ -7,12 +7,14 @@ module Icasework
   class Case
     class << self
       def where(params)
-        Icasework::Resource.get_cases(params).data.map do |data|
+        Icasework::Resource.get_cases(params).data['Cases']['Case'].map do |d|
           new(
-            'CaseDetails.CaseId' => data['CaseId'],
-            'CaseDetails.CaseType' => data['CaseType'],
-            'CaseDetails.CaseLabel' => data['CaseLabel'],
-            'CaseDetails.Rating' => data['Rating']
+            'CaseDetails.CaseId' => d['CaseId'],
+            'CaseDetails.CaseType' => d['Type'],
+            'CaseDetails.CaseLabel' => d['Label'],
+            'CaseStatusReceipt.Method' => d['RequestMethod'],
+            'CaseStatusReceipt.TimeCreated' => d['RequestDate'],
+            'CaseStatus.Status' => d['Status']
           )
         end
       end
