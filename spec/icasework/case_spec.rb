@@ -45,9 +45,7 @@ RSpec.describe Icasework::Case do
     let(:response) do
       { status: 200, body: { createcaseresponse: { caseid: 123 } }.to_json }
     end
-    let(:payload) do
-      { 'Format' => 'json', 'Type' => 'InformationRequest' }
-    end
+    let(:payload) { { 'Type' => 'InformationRequest' } }
     let(:token) do
       Icasework::Token::Bearer.new(
         { 'access_token' => 'mock_token', 'token_type' => 'bearer',
@@ -64,7 +62,7 @@ RSpec.describe Icasework::Case do
       create_case
       expect(WebMock).to have_requested(:post, "#{uri}?db=test").with(
         headers: { 'Content-Type' => 'application/x-www-form-urlencoded' },
-        body: URI.encode_www_form(payload)
+        body: { 'Format' => 'json', 'Type' => 'InformationRequest' }
       ).once
     end
 

@@ -14,10 +14,10 @@ RSpec.describe Icasework::Token::Bearer do
       }
     end
     let(:payload) do
-      URI.encode_www_form(
+      {
         grant_type: 'urn:ietf:params:oauth:grant-type:jwt-bearer',
         assertion: jwt
-      )
+      }
     end
     let(:jwt) { Icasework::Token::JWT.new('mock_jwt') }
 
