@@ -74,4 +74,12 @@ RSpec.describe Icasework::Case do
       it { is_expected.to be_an described_class }
     end
   end
+
+  describe '#case_id' do
+    subject { instance.case_id }
+
+    let(:instance) { described_class.new('CaseDetails.CaseId' => 123) }
+
+    it { is_expected.to eq 123 }
+  end
 end
