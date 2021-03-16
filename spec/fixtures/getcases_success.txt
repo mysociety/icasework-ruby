@@ -1,27 +1,53 @@
 HTTP/1.1 200 OK
-Content-Type: application/json;charset=UTF-8
-Content-Length: 511
+content-type: text/xml;charset=UTF-8
+content-length: 2790
 
-[
-{
-"CaseId": "487347",
-"CaseType": "Information request",
-"CaseLabel": "IR - y",
-"ContactMethod": "Online Form",
-"DateReceived": "2021-02-15",
-"TimeCreated": "2021-02-15T16:42:19",
-"Status": "Some information sent but not all held",
-"Rating": "Standard"
-}
-,
-{
-"CaseId": "487342",
-"CaseType": "Information request",
-"CaseLabel": "IR - h",
-"ContactMethod": "Email",
-"DateReceived": "2021-02-15",
-"TimeCreated": "2021-02-15T16:39:18",
-"Status": "All information sent",
-"Rating": "Standard"
-}
-]
+<?xml version="1.0" encoding="UTF-8"?>
+<Cases>
+  <Case>
+    <CaseId>487347</CaseId>
+    <Type>Information request</Type>
+    <Label>IR - y</Label>
+    <RequestMethod>Online Form</RequestMethod>
+    <RequestDate>2021-02-15T16:42:19</RequestDate>
+    <Status>Some information sent but not all held</Status>
+    <Attributes>
+      <Details>y</Details>
+      <InformationWillBe>Embedded in the response</InformationWillBe>
+      <PublishInTheDisclosureLog>Yes</PublishInTheDisclosureLog>
+      <ReasonInformationNotHeld>t</ReasonInformationNotHeld>
+      <SuitableForPublicationScheme>Yes</SuitableForPublicationScheme>
+    </Attributes>
+    <Classifications>
+      <Classification Group="About the council">Budgets spending and performance</Classification>
+      <Classification Group="Licensing and regulation">Animal licensing</Classification>
+      <Classification Group="Leisure and culture">Libraries</Classification>
+    </Classifications>
+    <Documents>
+      <Document Id="D225851" Name="Response (some not held)" Category="General upload" Type="application/pdf" Source="Document" DocumentDate="2021-02-15T16:43:11"><![CDATA[https://uatportal.icasework.com/servlet/servlets.getImg?ref=D225851&bin=Y&auth=0&db=UJzFimNH5H4%3D&access_token=773WgblkSUxU7tva_uAQRK77bUD4lDfgfes_mz3uPHwZNu3ucP5OXsYgCtvDCvYz.AJAhd9_B7RiK45ojg4Lilw%3D%3D]]></Document>
+    </Documents>
+  </Case>
+  <Case>
+    <CaseId>487342</CaseId>
+    <Type>Information request</Type>
+    <Label>IR - h</Label>
+    <RequestMethod>Email</RequestMethod>
+    <RequestDate>2021-02-15T16:39:18</RequestDate>
+    <Status>All information sent</Status>
+    <Attributes>
+      <Details>h</Details>
+      <InformationWillBe>Embedded in the response</InformationWillBe>
+      <PublishInTheDisclosureLog>Yes</PublishInTheDisclosureLog>
+      <SuitableForPublicationScheme>Yes</SuitableForPublicationScheme>
+    </Attributes>
+    <Classifications>
+      <Classification Group="About the council">Budgets spending and performance</Classification>
+      <Classification Group="Children and families">Adoption and fostering</Classification>
+      <Classification Group="Health and social care">Adult social care</Classification>
+      <Classification Group="Transport and streets">Cycling</Classification>
+    </Classifications>
+    <Documents>
+      <Document Id="D225945" Name="Response (all information to be supplied)" Category="General upload" Type="application/pdf" Source="Document" DocumentDate="2021-02-15T16:40:18"><![CDATA[https://uatportal.icasework.com/servlet/servlets.getImg?ref=D225945&bin=Y&auth=0&db=UJzFimNH5H4%3D&access_token=8dfWG2lEfUtFVO5kf9DAW3bfDYjPdAc8Uy8WBnKoZFBFl6aY7YtbMaCHXFWznd9S.B3IF9gqOYDhq9ceqHFTVWw%3D%3D]]></Document>
+    </Documents>
+  </Case>
+</Cases>

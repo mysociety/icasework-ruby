@@ -158,7 +158,7 @@ RSpec.describe Icasework::Resource do
     context 'when POST request, with format option' do
       let(:method) { :post }
 
-      it { is_expected.to eq(Format: 'json', Foo: 'bar') }
+      it { is_expected.to eq(Format: 'xml', Foo: 'bar') }
     end
 
     context 'when POST request, without format option' do
@@ -171,7 +171,7 @@ RSpec.describe Icasework::Resource do
     context 'when GET request, with format option' do
       let(:method) { :get }
 
-      it { is_expected.to eq(params: { Format: 'json', Foo: 'bar' }) }
+      it { is_expected.to eq(params: { Format: 'xml', Foo: 'bar' }) }
     end
 
     context 'when GET request, without format option' do

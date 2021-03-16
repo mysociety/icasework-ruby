@@ -25,7 +25,7 @@ RSpec.describe Icasework::Case do
     it 'calls the GET getcases endpoint with payload' do
       cases
       expect(WebMock).to have_requested(:get, "#{uri}?db=test").with(
-        query: { 'Format' => 'json', 'Type' => 'InformationRequest' }
+        query: { 'Format' => 'xml', 'Type' => 'InformationRequest' }
       ).once
     end
 
@@ -58,7 +58,7 @@ RSpec.describe Icasework::Case do
       create_case
       expect(WebMock).to have_requested(:post, "#{uri}?db=test").with(
         headers: { 'Content-Type' => 'application/x-www-form-urlencoded' },
-        body: { 'Format' => 'json', 'Type' => 'InformationRequest' }
+        body: { 'Format' => 'xml', 'Type' => 'InformationRequest' }
       ).once
     end
 
