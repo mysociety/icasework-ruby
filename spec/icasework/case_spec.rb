@@ -35,6 +35,7 @@ RSpec.describe Icasework::Case do
 
       it { is_expected.to be_an Array }
       it { is_expected.to all(be_an(described_class)) }
+      it { expect(cases.count).to eq 2 }
     end
   end
 
