@@ -3,20 +3,24 @@
 require 'spec_helper'
 
 RSpec.describe Icasework::Case do
+  let(:token) do
+    Icasework::Token::Bearer.new(
+      { 'access_token' => 'mock_token', 'token_type' => 'bearer',
+        'expires_in' => 3600 }
+    )
+  end
+
+  before do
+    allow(Icasework::Token::Bearer).to receive(:generate).and_return(token)
+  end
+
   describe '.where' do
     subject(:cases) { described_class.where(payload) }
 
     let(:uri) { 'https://uatportal.icasework.com/getcases' }
     let(:payload) { { 'Type' => 'InformationRequest' } }
-    let(:token) do
-      Icasework::Token::Bearer.new(
-        { 'access_token' => 'mock_token', 'token_type' => 'bearer',
-          'expires_in' => 3600 }
-      )
-    end
 
     before do
-      allow(Icasework::Token::Bearer).to receive(:generate).and_return(token)
       stub_request(:get, /#{uri}.*/).to_return(
         File.new('spec/fixtures/getcases_success.txt')
       )
@@ -41,15 +45,8 @@ RSpec.describe Icasework::Case do
 
     let(:uri) { 'https://uat.icasework.com/createcase' }
     let(:payload) { { 'Type' => 'InformationRequest' } }
-    let(:token) do
-      Icasework::Token::Bearer.new(
-        { 'access_token' => 'mock_token', 'token_type' => 'bearer',
-          'expires_in' => 3600 }
-      )
-    end
 
     before do
-      allow(Icasework::Token::Bearer).to receive(:generate).and_return(token)
       stub_request(:post, /#{uri}.*/).to_return(
         File.new('spec/fixtures/createcase_success.txt')
       )
