@@ -152,40 +152,40 @@ RSpec.describe Icasework::Resource do
     let(:method) { nil }
     let(:options) { {} }
     let(:instance) do
-      described_class.new(method, '', { Foo: 'bar' }, **options)
+      described_class.new(method, '', { foo: 'bar' }, **options)
     end
 
     context 'when POST request, with format option' do
       let(:method) { :post }
 
-      it { is_expected.to eq(Format: 'xml', Foo: 'bar') }
+      it { is_expected.to eq('Format' => 'xml', 'Foo' => 'bar') }
     end
 
     context 'when POST request, without format option' do
       let(:method) { :post }
       let(:options) { { format: nil } }
 
-      it { is_expected.to eq(Foo: 'bar') }
+      it { is_expected.to eq('Foo' => 'bar') }
     end
 
     context 'when GET request, with format option' do
       let(:method) { :get }
 
-      it { is_expected.to eq(params: { Format: 'xml', Foo: 'bar' }) }
+      it { is_expected.to eq(params: { 'Format' => 'xml', 'Foo' => 'bar' }) }
     end
 
     context 'when GET request, without format option' do
       let(:method) { :get }
       let(:options) { { format: nil } }
 
-      it { is_expected.to eq(params: { Foo: 'bar' }) }
+      it { is_expected.to eq(params: { 'Foo' => 'bar' }) }
     end
   end
 
   describe '#data' do
     let(:method) { nil }
     let(:instance) do
-      described_class.new(method, '', { Foo: 'bar' })
+      described_class.new(method, '', { 'Foo' => 'bar' })
     end
 
     before do

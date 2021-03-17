@@ -9,6 +9,8 @@ module Icasework
   require 'icasework/case'
   require 'icasework/errors'
   require 'icasework/resource'
+  require 'icasework/resource/data'
+  require 'icasework/resource/payload'
   require 'icasework/token/jwt'
   require 'icasework/token/bearer'
 

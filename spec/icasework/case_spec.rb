@@ -5,8 +5,7 @@ require 'spec_helper'
 RSpec.describe Icasework::Case do
   let(:token) do
     Icasework::Token::Bearer.new(
-      { 'access_token' => 'mock_token', 'token_type' => 'bearer',
-        'expires_in' => 3600 }
+      { access_token: 'mock_token', token_type: 'bearer', expires_in: 3600 }
     )
   end
 
@@ -18,7 +17,7 @@ RSpec.describe Icasework::Case do
     subject(:cases) { described_class.where(payload) }
 
     let(:uri) { 'https://uatportal.icasework.com/getcases' }
-    let(:payload) { { 'Type' => 'InformationRequest' } }
+    let(:payload) { { type: 'InformationRequest' } }
 
     before do
       stub_request(:get, /#{uri}.*/).to_return(
@@ -44,7 +43,7 @@ RSpec.describe Icasework::Case do
     subject(:create_case) { described_class.create(payload) }
 
     let(:uri) { 'https://uat.icasework.com/createcase' }
-    let(:payload) { { 'Type' => 'InformationRequest' } }
+    let(:payload) { { type: 'InformationRequest' } }
 
     before do
       stub_request(:post, /#{uri}.*/).to_return(
@@ -68,7 +67,7 @@ RSpec.describe Icasework::Case do
   describe '#case_id' do
     subject { instance.case_id }
 
-    let(:instance) { described_class.new('CaseDetails.CaseId' => 123) }
+    let(:instance) { described_class.new(case_details: { case_id: 123 }) }
 
     it { is_expected.to eq 123 }
   end
