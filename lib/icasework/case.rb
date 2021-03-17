@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'active_support/core_ext/hash/deep_merge'
+
 module Icasework
   ##
   # A Ruby representation of a case in iCasework
@@ -11,7 +13,10 @@ module Icasework
           new(
             case_details: case_details_data(data),
             case_status: case_status_data(data),
-            case_status_receipt: case_status_receipt_data(data)
+            case_status_receipt: case_status_receipt_data(data),
+            attributes: data[:attributes],
+            classifications: Array(data[:classifications][:classification]),
+            documents: Array(data[:documents][:document])
           )
         end
       end
@@ -41,12 +46,33 @@ module Icasework
       end
     end
 
-    def initialize(data)
-      @data = data
+    def initialize(hash)
+      @hash = LazyHash.new(hash) do
+        load_additional_data!
+      end
     end
 
     def case_id
-      @data[:case_details][:case_id]
+      self[:case_details][:case_id]
+    end
+
+    def [](key)
+      @hash[key]
+    end
+
+    private
+
+    def load_additional_data!
+      return @hash if @loaded
+
+      @loaded = true
+      @hash.deep_merge!(fetch_additional_data)
+    end
+
+    def fetch_additional_data
+      @fetch_additional_data ||= Icasework::Resource.get_case_details(
+        case_id: case_id
+      ).data[:cases][:case]
     end
   end
 end

@@ -1,0 +1,119 @@
+HTTP/1.1 200 OK
+Content-Type: text/xml;charset=UTF-8
+Content-Length: 7831
+
+<?xml version="1.0" encoding="UTF-8"?>
+<Cases RequestId="487347">
+<Case>
+<CaseDetailsInformationRequest.AdviceAndAssistance>No</CaseDetailsInformationRequest.AdviceAndAssistance>
+<CaseDetailsInformationRequest.Details>y</CaseDetailsInformationRequest.Details>
+<CaseDetailsInformationRequest.InformationWillBe>Embedded in the response</CaseDetailsInformationRequest.InformationWillBe>
+<CaseDetailsInformationRequest.PressOfficeContact>No</CaseDetailsInformationRequest.PressOfficeContact>
+<CaseDetailsInformationRequest.PublishInTheDisclosureLog>Yes</CaseDetailsInformationRequest.PublishInTheDisclosureLog>
+<CaseDetailsInformationRequest.ReasonInformationNotHeld>t</CaseDetailsInformationRequest.ReasonInformationNotHeld>
+<CaseDetailsInformationRequest.RequestAboutDeceasedPerson>No</CaseDetailsInformationRequest.RequestAboutDeceasedPerson>
+<CaseDetailsInformationRequest.Scheme>Freedom of Information Act</CaseDetailsInformationRequest.Scheme>
+<CaseDetailsInformationRequest.SuitableForPublicationScheme>Yes</CaseDetailsInformationRequest.SuitableForPublicationScheme>
+<CaseDetails.CaseId>487347</CaseDetails.CaseId>
+<CaseDetails.ExternalId></CaseDetails.ExternalId>
+<CaseDetails.ParentCaseId></CaseDetails.ParentCaseId>
+<CaseDetails.CaseType>Information request</CaseDetails.CaseType>
+<CaseDetails.FormType>Information request</CaseDetails.FormType>
+<CaseDetails.CaseLabel>IR - y</CaseDetails.CaseLabel>
+<CaseDetails.Rating>Medium</CaseDetails.Rating>
+<CaseDetails.Confidential>No</CaseDetails.Confidential>
+<CaseDetails.AssignedTo>My Society</CaseDetails.AssignedTo>
+<CaseDetails.AssignedToId>MYSOCIETY</CaseDetails.AssignedToId>
+<CaseDetails.Department></CaseDetails.Department>
+<CaseDetails.AssignedToJobTitle></CaseDetails.AssignedToJobTitle>
+<CaseDetails.AssignedToAddress></CaseDetails.AssignedToAddress>
+<CaseDetails.Team>Information management team</CaseDetails.Team>
+<CaseDetails.TeamCode>IGTeam</CaseDetails.TeamCode>
+<CaseDetails.Directorate>Customer Services</CaseDetails.Directorate>
+<CaseDetailsEstimatedFeesAndTimeSpent.TotalCostAllowedToBeCharged></CaseDetailsEstimatedFeesAndTimeSpent.TotalCostAllowedToBeCharged>
+<CaseDetailsEstimatedFeesAndTimeSpent.StatutoryAppropriateLimit></CaseDetailsEstimatedFeesAndTimeSpent.StatutoryAppropriateLimit>
+<CaseDetailsEstimatedFeesAndTimeSpent.FeeCharged></CaseDetailsEstimatedFeesAndTimeSpent.FeeCharged>
+<CaseDetailsEstimatedFeesAndTimeSpent.Disbursements></CaseDetailsEstimatedFeesAndTimeSpent.Disbursements>
+<CaseDetailsEstimatedFeesAndTimeSpent.ChargeableItemsCosts></CaseDetailsEstimatedFeesAndTimeSpent.ChargeableItemsCosts>
+<CaseDetailsInformationRequest.PaymentAmount></CaseDetailsInformationRequest.PaymentAmount>
+<CaseDetailsInformationRequest.Disbursements></CaseDetailsInformationRequest.Disbursements>
+<CaseDetailsInformationRequest.ChargeableItemsCosts></CaseDetailsInformationRequest.ChargeableItemsCosts>
+<CaseDetailsSubjectAccessRequest.PaymentAmount></CaseDetailsSubjectAccessRequest.PaymentAmount>
+<CaseDetails.Id></CaseDetails.Id>
+<CaseStatus.Status>Some information sent but not all held</CaseStatus.Status>
+<CaseStatus.CurrentTargetDate></CaseStatus.CurrentTargetDate>
+<CaseStatus.CurrentTargetDays></CaseStatus.CurrentTargetDays>
+<CaseStatus.CurrentStage>Request</CaseStatus.CurrentStage>
+<CaseStatus.CurrentOutcome>Some information sent but not all held</CaseStatus.CurrentOutcome>
+<CaseStatus.CurrentOutcomeDate>2021-02-15</CaseStatus.CurrentOutcomeDate>
+<CaseStatus.CurrentStageOutcome>Some information sent but not all held</CaseStatus.CurrentStageOutcome>
+<CaseStatus.CurrentStageOutcomeDate>2021-02-15</CaseStatus.CurrentStageOutcomeDate>
+<CaseStatusReceipt.Method>Online Form</CaseStatusReceipt.Method>
+<CaseStatusReceipt.CreatedBy>iCasework Support</CaseStatusReceipt.CreatedBy>
+<CaseStatusReceipt.DateReceived>2021-02-15</CaseStatusReceipt.DateReceived>
+<CaseStatusReceipt.TimeCreated>2021-02-15T16:42:19</CaseStatusReceipt.TimeCreated>
+<CaseStatusTouchTimes.FirstTouchTime>2021-02-15T16:42:20</CaseStatusTouchTimes.FirstTouchTime>
+<CaseStatusTouchTimes.LastUpdatedTime>2021-03-08T16:17:29</CaseStatusTouchTimes.LastUpdatedTime>
+<CaseStatusTouchTimes.LastTouchTime>2021-03-08T16:17:29</CaseStatusTouchTimes.LastTouchTime>
+<CaseStatusAcceptance.DateAccepted>2021-02-15</CaseStatusAcceptance.DateAccepted>
+<CaseStatusRejection.DateReturned></CaseStatusRejection.DateReturned>
+<CaseStatusRejection.ReturnedReason></CaseStatusRejection.ReturnedReason>
+<CaseStatusWithdrawal.DateWithdrawn></CaseStatusWithdrawal.DateWithdrawn>
+<CaseStatusWithdrawal.WithdrawnReason></CaseStatusWithdrawal.WithdrawnReason>
+<CaseStatusClosure.DateClosed></CaseStatusClosure.DateClosed>
+<CaseStatusClosure.ClosureInTarget></CaseStatusClosure.ClosureInTarget>
+<CaseStageStage1.TargetDays>20</CaseStageStage1.TargetDays>
+<CaseStageStage1.DateDue>2021-03-15</CaseStageStage1.DateDue>
+<CaseStageStage1.Outcome>Some information sent but not all held</CaseStageStage1.Outcome>
+<CaseStageStage1.OutcomeDetails></CaseStageStage1.OutcomeDetails>
+<CaseStageStage1.OutcomeBy>iCasework Support</CaseStageStage1.OutcomeBy>
+<CaseStageStage1.DateCompleted>2021-02-15</CaseStageStage1.DateCompleted>
+<CaseStageStage1.ResponseInTarget>Yes</CaseStageStage1.ResponseInTarget>
+<CaseStageStage2.TargetDays>20</CaseStageStage2.TargetDays>
+<CaseStageStage2.DateReceived></CaseStageStage2.DateReceived>
+<CaseStageStage2.DateDue></CaseStageStage2.DateDue>
+<CaseStageStage2.Outcome></CaseStageStage2.Outcome>
+<CaseStageStage2.OutcomeDetails></CaseStageStage2.OutcomeDetails>
+<CaseStageStage2.OutcomeBy></CaseStageStage2.OutcomeBy>
+<CaseStageStage2.DateCompleted></CaseStageStage2.DateCompleted>
+<CaseStageStage2.ResponseInTarget></CaseStageStage2.ResponseInTarget>
+<CaseStageStage3.TargetDays></CaseStageStage3.TargetDays>
+<CaseStageStage3.DateReceived></CaseStageStage3.DateReceived>
+<CaseStageStage3.DateDue></CaseStageStage3.DateDue>
+<CaseStageStage3.Outcome></CaseStageStage3.Outcome>
+<CaseStageStage3.OutcomeDetails></CaseStageStage3.OutcomeDetails>
+<CaseStageStage3.OutcomeBy></CaseStageStage3.OutcomeBy>
+<CaseStageStage3.DateCompleted></CaseStageStage3.DateCompleted>
+<CaseStageStage3.ResponseInTarget></CaseStageStage3.ResponseInTarget>
+<CaseStageStage4.TargetDays></CaseStageStage4.TargetDays>
+<CaseStageStage4.DateReceived></CaseStageStage4.DateReceived>
+<CaseStageStage4.DateDue></CaseStageStage4.DateDue>
+<CaseStageStage4.Outcome></CaseStageStage4.Outcome>
+<CaseStageStage4.OutcomeDetails></CaseStageStage4.OutcomeDetails>
+<CaseStageStage4.OutcomeBy></CaseStageStage4.OutcomeBy>
+<CaseStageStage4.DateCompleted></CaseStageStage4.DateCompleted>
+<CaseStageStage4.ResponseInTarget></CaseStageStage4.ResponseInTarget>
+<MainParty.Reference>214641</MainParty.Reference>
+<MainParty.Title>Mr</MainParty.Title>
+<MainParty.FullName>Bloggs, Fred</MainParty.FullName>
+<MainParty.FirstName>Fred</MainParty.FirstName>
+<MainParty.LastName>Bloggs</MainParty.LastName>
+<MainParty.Address>Flat B
+Canterbury Court
+Peel Street</MainParty.Address>
+<MainParty.Town>Nottingham</MainParty.Town>
+<MainParty.County>Nottinghamshire</MainParty.County>
+<MainParty.Postcode>NG1 4GR</MainParty.Postcode>
+<MainParty.EmailAddress>fred.bloggs@example.com</MainParty.EmailAddress>
+<CustomerSatisfaction.OverallRating></CustomerSatisfaction.OverallRating>
+<MainParty.Category>Resident</MainParty.Category>
+<MainParty.ContactMethod></MainParty.ContactMethod>
+<MainParty.ContactTime></MainParty.ContactTime>
+<MainParty.DateOfBirth></MainParty.DateOfBirth>
+<MainParty.Mobile></MainParty.Mobile>
+<MainParty.Organisation>Organisation b</MainParty.Organisation>
+<MainParty.Phone></MainParty.Phone>
+<MainParty.ContactLanguage></MainParty.ContactLanguage>
+<MainParty.Notes></MainParty.Notes>
+</Case>
+</Cases>
