@@ -110,4 +110,48 @@ RSpec.describe Icasework::Case do
       end
     end
   end
+
+  describe '#classifications' do
+    subject(:classifications) { instance.classifications }
+
+    let(:instance) do
+      described_class.new(
+        classifications: [
+          { group: 'About the council', __content__: 'Budgets spending' }
+        ]
+      )
+    end
+
+    it { is_expected.to all(be_a Classification) }
+
+    it 'calls Classification initialiser with required attributes' do
+      allow(Classification).to receive(:new).and_call_original
+      instance.classifications
+      expect(Classification).to have_received(:new).with(
+        group: 'About the council', __content__: 'Budgets spending'
+      )
+    end
+  end
+
+  describe '#documents' do
+    subject(:classifications) { instance.documents }
+
+    let(:instance) do
+      described_class.new(
+        documents: [
+          { id: 'D123', name: 'filename', __content__: 'Hello world' }
+        ]
+      )
+    end
+
+    it { is_expected.to all(be_a Document) }
+
+    it 'calls Document initialiser with required attributes' do
+      allow(Document).to receive(:new).and_call_original
+      instance.documents
+      expect(Document).to have_received(:new).with(
+        id: 'D123', name: 'filename', __content__: 'Hello world'
+      )
+    end
+  end
 end

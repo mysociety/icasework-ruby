@@ -15,8 +15,8 @@ module Icasework
             case_status: case_status_data(data),
             case_status_receipt: case_status_receipt_data(data),
             attributes: data[:attributes],
-            classifications: Array(data[:classifications][:classification]),
-            documents: Array(data[:documents][:document])
+            classifications: [data[:classifications][:classification]].flatten,
+            documents: [data[:documents][:document]].flatten
           )
         end
       end
@@ -58,6 +58,14 @@ module Icasework
 
     def [](key)
       @hash[key]
+    end
+
+    def classifications
+      @hash[:classifications].map { |c| Classification.new(c) }
+    end
+
+    def documents
+      @hash[:documents].map { |d| Document.new(d) }
     end
 
     private
