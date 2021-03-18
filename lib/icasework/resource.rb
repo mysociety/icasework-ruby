@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require 'rest_client'
-require 'active_support/core_ext/hash/conversions'
 
 module Icasework
   ##
@@ -109,7 +108,7 @@ module Icasework
     def parse_format(response)
       case format
       when 'xml'
-        Hash.from_xml(response.body)
+        XMLConverter.new(response.body).to_h
       else
         JSON.parse(response.body)
       end
