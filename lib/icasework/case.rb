@@ -60,6 +60,10 @@ module Icasework
       @hash[key]
     end
 
+    def to_hash
+      @hash
+    end
+
     private
 
     def load_additional_data!
