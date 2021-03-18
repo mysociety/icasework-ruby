@@ -14,9 +14,9 @@ module Icasework
       @block = block
 
       @hash.default_proc = proc do |h, k|
-        value = @block.call[@key].fetch(k) if @key
-        value ||= @block.call.fetch(k)
-        h[k] = value
+        new_hash = @block.call
+        new_hash = new_hash[@key] if @key
+        h[k] = new_hash.fetch(k)
       end
 
       super(@hash)
