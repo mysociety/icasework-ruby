@@ -7,6 +7,8 @@ require 'icasework/version'
 #
 module Icasework
   require 'icasework/case'
+  require 'icasework/classification'
+  require 'icasework/document'
   require 'icasework/errors'
   require 'icasework/lazy_hash'
   require 'icasework/resource'
