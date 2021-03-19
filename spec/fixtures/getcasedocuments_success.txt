@@ -1,0 +1,8 @@
+HTTP/1.1 200 OK
+Content-Type: text/xml;charset=UTF-8
+Content-Length: 450
+
+<?xml version="1.0" encoding="UTF-8"?>
+<Documents>
+  <Document Id="D225851" Name="Response (some not held)" Category="General upload" Type="application/pdf" Source="Document" DocumentDate="2021-02-15T16:43:11"><![CDATA[https://uat.icasework.com/servlet/servlets.getImg?ref=D225851&bin=Y&auth=0&db=UJzFimNH5H4%3D&access_token=IMISuIVt6zkXR_vM7koKX4u4sIlnlBDpTZg8rbJxxu33A5Lc2ToiqglsSRtYYOLC.vLrgeS55NDZtiQn0DmS8BQ%3D%3D]]></Document>
+</Documents>
