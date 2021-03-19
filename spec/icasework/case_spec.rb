@@ -154,4 +154,14 @@ RSpec.describe Icasework::Case do
       )
     end
   end
+
+  describe '#to_h' do
+    subject { instance.to_h }
+
+    let(:hash) { { case_details: { case_id: 123 } } }
+
+    let(:instance) { described_class.new(hash) }
+
+    it { is_expected.to eq hash }
+  end
 end

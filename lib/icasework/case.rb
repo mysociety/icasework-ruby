@@ -68,6 +68,10 @@ module Icasework
       @hash[:documents].map { |d| Document.new(d) }
     end
 
+    def to_h
+      @hash.to_h
+    end
+
     private
 
     def load_additional_data!
