@@ -14,6 +14,7 @@ module Icasework
   require 'icasework/resource/payload'
   require 'icasework/token/jwt'
   require 'icasework/token/bearer'
+  require 'icasework/xml_converter'
 
   ConfigurationError = Class.new(StandardError)
 
