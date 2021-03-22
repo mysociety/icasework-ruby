@@ -1,0 +1,139 @@
+HTTP/1.1 400 Bad Request
+Content-Disposition: filename="output.xml"
+Content-Length: 2934
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <title>Error Page</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="//use.fontawesome.com/b9c29e5c39.js"></script>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #fff; /* #E0E0E0; */
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      text-align: center;
+    }
+
+    .error-wrapper {
+      width: 100%;
+      /*margin: 0 auto;*/
+      padding: 5% 0;
+    }
+
+    .error-content {
+      width: 100%;
+      padding: 5% 0;
+    }
+
+    .error-content {
+      width: 800px;
+      margin: 0 auto;
+    }
+
+    h1, .error-logo .fa,
+    p {
+      color: #757575;
+    }
+
+    p {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      font-size: 55px;
+      text-transform: capitalize;
+      margin-bottom: 20px;
+      margin-top: 20px;
+    }
+
+    .leading-text {
+      text-transform: uppercase;
+      letter-spacing: 5px;
+      margin-bottom: 30px;
+    }
+    .uat-logo {
+    Font-family: Ubuntu, Verdana, Arial;
+    letter-spacing: -1px;
+    font-size: 1.2em;
+    line-height: 1.5em;
+    margin-bottom: 50px;
+    }
+    .uat-logo i {
+      padding-right: 5px;
+    }
+    .uat-logo .fa {
+      color:#044C92;
+    }
+    .uat-logo span.dark-blue {
+      color:#063B63;
+    }
+    .uat-logo span.light-blue {
+      color: #005F9E;
+      margin-left: -3px;
+    }
+    /* Medium Devices, Desktops */
+
+    @media only screen and (max-width: 992px) {
+      .error-content {
+        pading: 20% 0;
+      }
+    }
+    /* Small Devices, Tablets */
+
+    @media only screen and (max-width: 768px) {
+      .error-content {
+        width: 100%;
+        padding: 15% 0;
+      }
+    }
+    /* Extra Small Devices, Phones */
+
+    @media only screen and (max-width: 480px) {
+      h1 {
+        font-size: 36px;
+        font-weight: bold;
+      }
+      .error-content {
+        padding: 20% 0;
+      }
+      .leading-text {
+        letter-spacing: 2px;
+        font-size: small;
+      }
+      .leading-text,
+      p {
+        font-size: small;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="error-wrapper">
+    <div class="error-content">
+      <p class="uat-logo"> <i class="fa fa-comment"></i> <span class="light-blue">iCasework</span></p>
+      <span class="error-logo"><i class="fa fa-exclamation-circle fa-3x"></i></span>
+      <h1>
+        An Unexpected Error Occured
+        </h1>
+      <p class="leading-text">
+        The Page You Were Looking For Was Not Found
+      </p>
+      <p>
+        You may have typed the address incorrectly or you may have used an outdated link. If it happens repeatedly, please contact your <strong>system administrator.</strong>
+      </p>
+    </div>
+  </div>
+</body>
+
+</html>

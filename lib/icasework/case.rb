@@ -9,18 +9,17 @@ module Icasework
   class Case
     class << self
       def where(params)
-        Icasework::Resource.get_cases(params).data[:cases][:case].map do |data|
-          new(case_data(data))
-        end
+        cases = Icasework::Resource.get_cases(params).data[:cases]
+        return [] unless cases
+
+        cases[:case].map { |data| new(case_data(data)) }
       end
 
       def create(params)
-        data = Icasework::Resource.create_case(params).data
-        new(
-          case_details: {
-            case_id: data[:createcaseresponse][:caseid]
-          }
-        )
+        data = Icasework::Resource.create_case(params).data[:createcaseresponse]
+        return nil unless data
+
+        new(case_details: { case_id: data[:caseid] })
       end
 
       private
@@ -86,9 +85,17 @@ module Icasework
     end
 
     def fetch_additional_data
-      @fetch_additional_data ||= Icasework::Resource.get_case_details(
-        case_id: case_id
-      ).data[:cases][:case]
+      @fetch_additional_data ||= begin
+        cases = Icasework::Resource.get_case_details(
+          case_id: case_id
+        ).data[:cases]
+
+        if cases
+          cases[:case]
+        else
+          {}
+        end
+      end
     end
   end
 end

@@ -19,11 +19,9 @@ RSpec.describe Icasework::Case do
     let(:uri) { 'https://uatportal.icasework.com/getcases' }
     let(:payload) { { type: 'InformationRequest' } }
 
-    before do
-      stub_request(:get, /#{uri}.*/).to_return(
-        File.new('spec/fixtures/getcases_success.txt')
-      )
-    end
+    let(:response) { File.new('spec/fixtures/getcases_empty.txt') }
+
+    before { stub_request(:get, /#{uri}.*/).to_return(response) }
 
     it 'calls the GET getcases endpoint with payload' do
       cases
@@ -32,7 +30,14 @@ RSpec.describe Icasework::Case do
       ).once
     end
 
+    context 'when no cases are returned' do
+      it { is_expected.to be_an Array }
+      it { is_expected.to be_empty }
+    end
+
     context 'when successful' do
+      let(:response) { File.new('spec/fixtures/getcases_success.txt') }
+
       it { is_expected.to be_an Array }
       it { is_expected.to all(be_an(described_class)) }
       it { expect(cases.count).to eq 2 }
@@ -45,11 +50,9 @@ RSpec.describe Icasework::Case do
     let(:uri) { 'https://uat.icasework.com/createcase' }
     let(:payload) { { type: 'InformationRequest' } }
 
-    before do
-      stub_request(:post, /#{uri}.*/).to_return(
-        File.new('spec/fixtures/createcase_success.txt')
-      )
-    end
+    let(:response) { File.new('spec/fixtures/createcase_success.txt') }
+
+    before { stub_request(:post, /#{uri}.*/).to_return(response) }
 
     it 'calls the POST createcase endpoint with payload' do
       create_case
@@ -61,6 +64,12 @@ RSpec.describe Icasework::Case do
 
     context 'when successful' do
       it { is_expected.to be_an described_class }
+    end
+
+    context 'when error returned' do
+      let(:response) { File.new('spec/fixtures/createcase_unknown_type.txt') }
+
+      it { expect { create_case }.to raise_error(Icasework::ResponseError) }
     end
   end
 
@@ -92,13 +101,29 @@ RSpec.describe Icasework::Case do
       end
     end
 
-    context 'when requesting unloaded key' do
+    shared_context 'when requesting unloaded key' do
       subject(:case_label) { case_details[:case_label] }
 
       before do
         stub_request(:get, %r{https://uat\.icasework\.com/getcasedetails.*}).
-          to_return(File.new('spec/fixtures/getcasedetails_success.txt'))
+          to_return(response)
       end
+    end
+
+    context 'when unsuccessful requesting unloaded key' do
+      include_context 'when requesting unloaded key'
+
+      let(:response) do
+        File.new('spec/fixtures/getcasedetails_unknown_case_id.txt')
+      end
+
+      it { expect { case_label }.to raise_error(Icasework::ResponseError) }
+    end
+
+    context 'when successful requesting unloaded key' do
+      include_context 'when requesting unloaded key'
+
+      let(:response) { File.new('spec/fixtures/getcasedetails_success.txt') }
 
       it { is_expected.to eq 'IR - y' }
 
