@@ -13,17 +13,17 @@ RSpec.describe Icasework::Document do
     allow(Icasework::Token::Bearer).to receive(:generate).and_return(token)
   end
 
-  describe '.find' do
-    subject(:documents) { described_class.find(payload) }
+  describe '.where' do
+    subject(:documents) { described_class.where(payload) }
 
     let(:uri) { 'https://uat.icasework.com/getcasedocuments' }
     let(:payload) { { case_id: 487_347 } }
 
-    before do
-      stub_request(:get, /#{uri}.*/).to_return(
-        File.new('spec/fixtures/getcasedocuments_success.txt')
-      )
+    let(:response) do
+      File.new('spec/fixtures/getcasedocuments_unknown_case_id.txt')
     end
+
+    before { stub_request(:get, /#{uri}.*/).to_return(response) }
 
     it 'calls the GET getcasedocuments endpoint with payload' do
       documents
@@ -33,15 +33,38 @@ RSpec.describe Icasework::Document do
     end
 
     context 'when successful' do
+      let(:response) { File.new('spec/fixtures/getcasedocuments_success.txt') }
+
       it { is_expected.to be_an Array }
       it { is_expected.to all(be_a(described_class)) }
       it { expect(documents.count).to eq 1 }
     end
 
-    context 'with document ID' do
-      subject(:document) { documents }
+    context 'when unsuccessful' do
+      it { is_expected.to be_an Array }
+      it { is_expected.to be_empty }
+    end
+  end
 
+  describe '#find' do
+    subject(:document) { described_class.find(payload) }
+
+    before do
+      allow(described_class).to receive(:where).and_return(
+        [
+          described_class.new(id: 'D225851'),
+          described_class.new(id: 'D123')
+        ]
+      )
+    end
+
+    context 'with document ID' do
       let(:payload) { { case_id: 487_347, document_id: 'D225851' } }
+
+      it 'calls #where with case_id' do
+        document
+        expect(described_class).to have_received(:where).with(case_id: 487_347)
+      end
 
       it { is_expected.to be_a(described_class) }
       it { expect(document.attributes[:id]).to eq 'D225851' }

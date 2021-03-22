@@ -8,12 +8,18 @@ module Icasework
   #
   class Document
     class << self
-      def find(case_id:, document_id: nil)
-        data = Icasework::Resource.get_case_documents(case_id: case_id).data
-        documents = [data[:documents][:document]].flatten.map do |attributes|
+      def where(case_id:)
+        documents = Icasework::Resource.get_case_documents(case_id: case_id).
+                    data[:documents]
+        return [] unless documents
+
+        [documents[:document]].flatten.map do |attributes|
           new(attributes)
         end
+      end
 
+      def find(case_id:, document_id: nil)
+        documents = where(case_id: case_id)
         return documents unless document_id
 
         documents.find { |d| d.attributes[:id] == document_id }

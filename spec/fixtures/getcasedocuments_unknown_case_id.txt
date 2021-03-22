@@ -1,0 +1,6 @@
+HTTP/1.1 200 OK
+Content-Type: text/xml;charset=UTF-8
+Content-Length: 55
+
+<?xml version="1.0" encoding="UTF-8"?>
+<Documents />
