@@ -10,14 +10,7 @@ module Icasework
     class << self
       def where(params)
         Icasework::Resource.get_cases(params).data[:cases][:case].map do |data|
-          new(
-            case_details: case_details_data(data),
-            case_status: case_status_data(data),
-            case_status_receipt: case_status_receipt_data(data),
-            attributes: data[:attributes],
-            classifications: [data[:classifications][:classification]].flatten,
-            documents: [data[:documents][:document]].flatten
-          )
+          new(case_data(data))
         end
       end
 
@@ -31,6 +24,17 @@ module Icasework
       end
 
       private
+
+      def case_data(data)
+        {
+          case_details: case_details_data(data),
+          case_status: case_status_data(data),
+          case_status_receipt: case_status_receipt_data(data),
+          attributes: data[:attributes],
+          classifications: [data[:classifications][:classification]].flatten,
+          documents: [data[:documents][:document]].flatten
+        }
+      end
 
       def case_details_data(data)
         { case_id: data[:case_id], case_type: data[:type],
