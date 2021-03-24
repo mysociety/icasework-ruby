@@ -9,7 +9,10 @@ module Icasework
   class Case
     class << self
       def where(params)
-        Icasework::Resource.get_cases(params).data[:cases][:case].map do |data|
+        cases =
+          Array(Icasework::Resource.get_cases(params).data.dig(:cases, :case))
+
+        cases.map do |data|
           new(
             case_details: case_details_data(data),
             case_status: case_status_data(data),

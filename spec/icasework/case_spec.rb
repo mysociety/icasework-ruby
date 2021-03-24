@@ -37,6 +37,17 @@ RSpec.describe Icasework::Case do
       it { is_expected.to all(be_an(described_class)) }
       it { expect(cases.count).to eq 2 }
     end
+
+    context 'when no cases returned' do
+      before do
+        stub_request(:get, /#{uri}.*/).to_return(
+          File.new('spec/fixtures/getcases_empty.txt')
+        )
+      end
+
+      it { is_expected.to be_an Array }
+      it { expect(cases.count).to eq 0 }
+    end
   end
 
   describe '.create' do
