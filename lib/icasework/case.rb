@@ -12,7 +12,7 @@ module Icasework
         cases = Icasework::Resource.get_cases(params).data[:cases]
         return [] unless cases
 
-        cases[:case].map { |data| new(case_data(data)) }
+        [cases[:case]].flatten.map { |data| new(case_data(data)) }
       end
 
       def create(params)

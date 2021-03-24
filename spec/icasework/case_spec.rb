@@ -35,6 +35,14 @@ RSpec.describe Icasework::Case do
       it { is_expected.to be_empty }
     end
 
+    context 'when a single case is returned' do
+      let(:response) { File.new('spec/fixtures/getcases_single.txt') }
+
+      it { is_expected.to be_an Array }
+      it { is_expected.to all(be_an(described_class)) }
+      it { expect(cases.count).to eq 1 }
+    end
+
     context 'when successful' do
       let(:response) { File.new('spec/fixtures/getcases_success.txt') }
 
