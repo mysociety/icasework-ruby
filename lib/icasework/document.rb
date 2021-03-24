@@ -8,8 +8,8 @@ module Icasework
   #
   class Document
     class << self
-      def where(case_id:)
-        documents = Icasework::Resource.get_case_documents(case_id: case_id).
+      def where(params)
+        documents = Icasework::Resource.get_case_documents(params).
                     data[:documents]
         return [] unless documents
 
@@ -18,8 +18,8 @@ module Icasework
         end
       end
 
-      def find(case_id:, document_id: nil)
-        documents = where(case_id: case_id)
+      def find(document_id: nil, **params)
+        documents = where(params)
         return documents unless document_id
 
         documents.find { |d| d.attributes[:id] == document_id }
