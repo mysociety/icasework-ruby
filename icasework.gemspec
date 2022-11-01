@@ -35,6 +35,6 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'activesupport', '>= 4.0.0'
   spec.add_dependency 'jwt', '~> 2.2.0'
   spec.add_dependency 'nokogiri', '~> 1.0'
-  spec.add_dependency 'pdf-reader', '~> 2.4.0'
+  spec.add_dependency 'pdf-reader', '>= 2.4', '< 2.12'
   spec.add_dependency 'rest-client', '~> 2.1.0'
 end
