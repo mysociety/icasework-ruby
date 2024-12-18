@@ -4,17 +4,23 @@ on: [pull_request]
 
 jobs:
   build:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
+    env:
+      BUNDLE_ONLY: rubocop
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
 
     - name: Set up Ruby
       uses: ruby/setup-ruby@v1
       with:
         ruby-version: 2.6
 
+    - run: |
+        gem install securerandom -v 0.3.2
+        gem install activesupport -v 7.1.5.1
+
     - name: Run RuboCop linter
-      uses: reviewdog/action-rubocop@v1
+      uses: reviewdog/action-rubocop@v2
       with:
         github_token: ${{ secrets.github_token }}
         reporter: github-pr-review
