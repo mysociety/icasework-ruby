@@ -1,8 +1,8 @@
-# Icasework
+# iCasework - Ruby client library
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/icasework`. To experiment with that code, run `bin/console` for an interactive prompt.
+A Ruby interface to Civica's iCasework API platform for submitting and retrieving case information. This client library provides basic methods to interact with cases and case-related data from iCasework instances.
 
-TODO: Delete this and the text above, and describe your gem
+**Note:** This gem is not officially affiliated with or supported by Civica.
 
 ## Installation
 
@@ -22,7 +22,22 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+```ruby
+# setup account
+Icasework.account = ...
+Icasework.api_key = ...
+
+# create a case
+Icasework::Case.create(type: 'InformationRequest',
+                       request_method: 'Online Form',
+                       customer: { name: name, email: email },
+                       details: body)
+
+# retrieve cases
+Icasework::Case.where(type: 'InformationRequest',
+                      from: start_date,
+                      until: end_date)
+```
 
 ## Development
 
@@ -32,8 +47,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/icasework. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](https://github.com/[USERNAME]/icasework/blob/master/CODE_OF_CONDUCT.md).
-
+Bug reports and pull requests are welcome on GitHub at https://github.com/mysociety/icasework-ruby. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](https://github.com/[USERNAME]/icasework/blob/master/CODE_OF_CONDUCT.md).
 
 ## License
 
