@@ -30,8 +30,8 @@ module Icasework
           case_status: case_status_data(data),
           case_status_receipt: case_status_receipt_data(data),
           attributes: data[:attributes],
-          classifications: [data[:classifications][:classification]].flatten,
-          documents: [data[:documents][:document]].flatten
+          classifications: case_classifications_data(data),
+          documents: case_documents_data(data)
         }
       end
 
@@ -46,6 +46,18 @@ module Icasework
 
       def case_status_data(data)
         { status: data[:status] }
+      end
+
+      def case_classifications_data(data)
+        return [] unless data[:classifications]
+
+        [data[:classifications][:classification]].flatten
+      end
+
+      def case_documents_data(data)
+        return [] unless data[:documents]
+
+        [data[:documents][:document]].flatten
       end
     end
 

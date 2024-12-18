@@ -1,0 +1,27 @@
+HTTP/1.1 200 OK
+content-type: text/xml;charset=UTF-8
+content-length: 1739
+
+<?xml version="1.0" encoding="UTF-8"?>
+<Cases>
+  <Case>
+    <CaseId>487347</CaseId>
+    <Type>Information request</Type>
+    <Label>IR - y</Label>
+    <RequestMethod>Online Form</RequestMethod>
+    <RequestDate>2021-02-15T16:42:19</RequestDate>
+    <Status>Some information sent but not all held</Status>
+    <Attributes>
+      <Details>y</Details>
+      <InformationWillBe>Embedded in the response</InformationWillBe>
+      <PublishInTheDisclosureLog>Yes</PublishInTheDisclosureLog>
+      <ReasonInformationNotHeld>t</ReasonInformationNotHeld>
+      <SuitableForPublicationScheme>Yes</SuitableForPublicationScheme>
+    </Attributes>
+    <Classifications>
+      <Classification Group="About the council">Budgets spending and performance</Classification>
+      <Classification Group="Licensing and regulation">Animal licensing</Classification>
+      <Classification Group="Leisure and culture">Libraries</Classification>
+    </Classifications>
+  </Case>
+</Cases>

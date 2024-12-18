@@ -50,6 +50,24 @@ RSpec.describe Icasework::Case do
       it { is_expected.to all(be_an(described_class)) }
       it { expect(cases.count).to eq 2 }
     end
+
+    context 'without classifications' do
+      let(:response) do
+        File.new('spec/fixtures/getcases_without_classifications.txt')
+      end
+
+      it { is_expected.to be_an Array }
+      it { is_expected.to all(be_an(described_class)) }
+    end
+
+    context 'without documents' do
+      let(:response) do
+        File.new('spec/fixtures/getcases_without_documents.txt')
+      end
+
+      it { is_expected.to be_an Array }
+      it { is_expected.to all(be_an(described_class)) }
+    end
   end
 
   describe '.create' do
