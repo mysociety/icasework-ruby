@@ -7,6 +7,7 @@ PATH
       nokogiri (~> 1.0)
       pdf-reader (~> 2.4.0)
       rest-client (~> 2.1.0)
+      rexml (~> 3.4.0)
 
 GEM
   remote: https://rubygems.org/
