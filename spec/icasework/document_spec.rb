@@ -47,7 +47,7 @@ RSpec.describe Icasework::Document do
   end
 
   describe '#find' do
-    subject(:document) { described_class.find(payload) }
+    subject(:document) { described_class.find(**payload) }
 
     before do
       allow(described_class).to receive(:where).and_return(
