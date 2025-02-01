@@ -33,7 +33,7 @@ Gem::Specification.new do |spec|
   spec.require_paths = ['lib']
 
   spec.add_dependency 'activesupport', '>= 4.0.0', '< 6.2'
-  spec.add_dependency 'jwt', '~> 2.2.0'
+  spec.add_dependency 'jwt', '>= 2.2', '< 2.11'
   spec.add_dependency 'nokogiri', '~> 1.0'
   spec.add_dependency 'pdf-reader', '~> 2.4.0'
   spec.add_dependency 'rest-client', '~> 2.1.0'
