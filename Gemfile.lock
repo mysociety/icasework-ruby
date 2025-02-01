@@ -5,14 +5,14 @@ PATH
       activesupport (>= 4.0.0, < 6.2)
       jwt (~> 2.2.0)
       nokogiri (~> 1.0)
-      pdf-reader (~> 2.4.0)
+      pdf-reader (>= 2.4, < 2.15)
       rest-client (~> 2.1.0)
       rexml (~> 3.4.0)
 
 GEM
   remote: https://rubygems.org/
   specs:
-    Ascii85 (1.1.1)
+    Ascii85 (2.0.1)
     activesupport (6.1.7.10)
       concurrent-ruby (~> 1.0, >= 1.0.2)
       i18n (>= 1.6, < 2)
@@ -63,8 +63,8 @@ GEM
     parser (3.3.7.0)
       ast (~> 2.4.1)
       racc
-    pdf-reader (2.4.2)
-      Ascii85 (~> 1.0)
+    pdf-reader (2.14.0)
+      Ascii85 (>= 1.0, < 3.0, != 2.0.0)
       afm (~> 0.2.1)
       hashery (~> 2.0)
       ruby-rc4
