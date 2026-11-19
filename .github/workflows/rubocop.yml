@@ -13,11 +13,7 @@ jobs:
     - name: Set up Ruby
       uses: ruby/setup-ruby@v1
       with:
-        ruby-version: 2.7
-
-    - run: |
-        gem install securerandom -v 0.3.2
-        gem install activesupport -v 7.1.5.1
+        ruby-version: 3.2
 
     - name: Run RuboCop linter
       uses: reviewdog/action-rubocop@v2
