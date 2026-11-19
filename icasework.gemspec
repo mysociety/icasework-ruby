@@ -13,7 +13,7 @@ Gem::Specification.new do |spec|
     'organisations of all sizes to do a better job of case management'
   spec.homepage      = 'https://github.com/mysociety/icasework-ruby/'
   spec.license       = 'MIT'
-  spec.required_ruby_version = Gem::Requirement.new('>= 2.7.0')
+  spec.required_ruby_version = Gem::Requirement.new('>= 3.2.0')
 
   spec.metadata['allowed_push_host'] = 'https://rubygems.org'
 
@@ -32,8 +32,8 @@ Gem::Specification.new do |spec|
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ['lib']
 
-  spec.add_dependency 'activesupport', '>= 4.0.0', '< 6.2'
-  spec.add_dependency 'jwt', '~> 2.2.0'
+  spec.add_dependency 'activesupport', '>= 6.1', '< 9'
+  spec.add_dependency 'jwt', '~> 2.2'
   spec.add_dependency 'nokogiri', '~> 1.0'
   spec.add_dependency 'pdf-reader', '~> 2.4.0'
   spec.add_dependency 'rest-client', '~> 2.1.0'
