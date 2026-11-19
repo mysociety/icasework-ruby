@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    icasework (0.1.4)
+    icasework (0.2.0)
       activesupport (>= 6.1, < 9)
       jwt (~> 2.2)
       nokogiri (~> 1.0)
