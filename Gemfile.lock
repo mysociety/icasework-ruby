@@ -5,14 +5,14 @@ PATH
       activesupport (>= 6.1, < 9)
       jwt (~> 2.2)
       nokogiri (~> 1.0)
-      pdf-reader (~> 2.4.0)
+      pdf-reader (>= 2.4, < 2.17)
       rest-client (~> 2.1.0)
       rexml (~> 3.4.0)
 
 GEM
   remote: https://rubygems.org/
   specs:
-    Ascii85 (1.1.1)
+    Ascii85 (2.0.2)
     activesupport (8.1.4.1)
       base64
       bigdecimal
@@ -28,7 +28,7 @@ GEM
       uri (>= 0.13.1)
     addressable (2.8.7)
       public_suffix (>= 2.0.2, < 7.0)
-    afm (0.2.2)
+    afm (1.0.1)
     ast (2.4.3)
     base64 (0.3.0)
     bigdecimal (3.1.9)
@@ -42,7 +42,7 @@ GEM
     domain_name (0.6.20240107)
     drb (2.2.3)
     hashdiff (1.1.2)
-    hashery (2.1.2)
+    hashery (2.2.2)
     http-accept (1.7.0)
     http-cookie (1.0.8)
       domain_name (~> 0.5)
@@ -79,11 +79,10 @@ GEM
     parser (3.3.14.0)
       ast (~> 2.4.1)
       racc
-    pdf-reader (2.4.2)
-      Ascii85 (~> 1.0)
-      afm (~> 0.2.1)
+    pdf-reader (2.16.0)
+      Ascii85 (>= 1.0, < 3.0, != 2.0.0)
+      afm (>= 0.2.1, < 2)
       hashery (~> 2.0)
-      ruby-rc4
       ttfunk
     prism (2.1.0)
     pry (0.15.2)
@@ -138,7 +137,6 @@ GEM
       regexp_parser (>= 2.0)
       rubocop (~> 1.86, >= 1.86.2)
     ruby-progressbar (1.13.0)
-    ruby-rc4 (0.1.5)
     securerandom (0.4.1)
     timecop (0.9.10)
     ttfunk (1.8.0)
